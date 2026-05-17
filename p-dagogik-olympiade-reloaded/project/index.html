@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Pädagogik-Olympiade 2027 — Drei Varianten</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%;background:#efe8d8;font-family:'JetBrains Mono',ui-monospace,monospace}
+  iframe{display:block;border:0;width:100%;background:#f4ecdb}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const VARIANTS = [
+  { id: 'a', label: 'A · Fluid Editorial', src: 'variants/a-fluid.html',
+    sub: 'Sand · Terrakotta · Olive · Serif-Editorial mit organischen Blob-Formen' },
+  { id: 'b', label: 'B · Manifest', src: 'variants/b-manifest.html',
+    sub: 'Brutalistisch-akademisch · Statement-Typografie · harte Raster' },
+  { id: 'c', label: 'C · Question Constellation', src: 'variants/c-constellation.html',
+    sub: 'Verspielt-fluide · drei Fragen als Orbit-Planeten · Mono-Akzente' },
+];
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "motion": "fluide",
+  "density": "kompakt",
+  "heroFocus": "alle"
+}/*EDITMODE-END*/;
+
+function VariantFrame({ src, motion, density }) {
+  const ref = React.useRef();
+  const onLoad = () => {
+    const doc = ref.current && ref.current.contentDocument;
+    if (!doc) return;
+    doc.body.classList.toggle('still', motion === 'statisch');
+    doc.body.classList.toggle('compact', density === 'kompakt');
+  };
+  React.useEffect(() => {
+    const doc = ref.current && ref.current.contentDocument;
+    if (!doc || !doc.body) return;
+    doc.body.classList.toggle('still', motion === 'statisch');
+    doc.body.classList.toggle('compact', density === 'kompakt');
+  }, [motion, density]);
+  return (
+    <iframe ref={ref} src={src} onLoad={onLoad}
+      style={{ width: 1280, height: 6800 }} />
+  );
+}
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  return (
+    <>
+      <DesignCanvas>
+        <DCSection id="po27" title="Pädagogik-Olympiade 2027 — Webseite"
+          subtitle="(Un-)Gerecht · 19. Februar 2027 · drei One-Pager-Richtungen im Vergleich. Klicke ein Board zum Vergrößern.">
+          {VARIANTS.map((v) => (
+            <DCArtboard key={v.id} id={v.id} label={v.label} width={1280} height={6800}
+              style={{ background: '#f4ecdb', overflow: 'hidden' }}>
+              <VariantFrame src={v.src} motion={t.motion} density={t.density} />
+            </DCArtboard>
+          ))}
+        </DCSection>
+      </DesignCanvas>
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Bewegung">
+          <TweakRadio label="Animation" value={t.motion} options={['fluide', 'statisch']}
+            onChange={(v) => setTweak('motion', v)} />
+        </TweakSection>
+        <TweakSection label="Dichte">
+          <TweakRadio label="Spacing" value={t.density} options={['luftig', 'kompakt']}
+            onChange={(v) => setTweak('density', v)} />
+        </TweakSection>
+        <TweakSection label="Notiz">
+          <div style={{ fontSize: 12, color: '#7a6e60', lineHeight: 1.55 }}>
+            Hero-Layout & Visual-System unterscheiden sich von Variante zu Variante.
+            Klicke eine Karte oben rechts (⤢), um sie im Vollbild zu öffnen.
+          </div>
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

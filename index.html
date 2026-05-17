@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pädagogik-Olympiade 2027 — (Un-)Gleichheit & (Un-)Gerechtigkeit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand: #F1EAD9;
+  --cream: #F8F2E4;
+  --paper: #FAF6EC;
+  --ink: #221d14;
+  --ink-2: #4a3e2c;
+  --terra: #C46A4A;
+  --terra-deep: #9c4c33;
+  --olive: #7a7e3e;
+  --olive-deep: #5d6231;
+  --rule: rgba(34,29,20,.18);
+  --rule-soft: rgba(34,29,20,.09);
+  --serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --motion-scale: 1; /* 0..1.3 controlled by tweak */
+  --density: 1;     /* 0.85..1.25 controlled by tweak */
+  --section-pad: clamp(104px, 11vw, 184px);
+  --section-head-gap: clamp(56px, 5.5vw, 88px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--sand);color:var(--ink);font-family:var(--sans);
+  font-feature-settings:"ss01","cv11";-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility}
+body{overflow-x:hidden}
+::selection{background:var(--terra);color:var(--cream)}
+img{max-width:100%;display:block}
+
+/* ─────────────────────────────────────────────
+   FLUID BACKGROUND BLOBS — site-wide, pointer-events:none
+   ───────────────────────────────────────────── */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  filter:blur(38px) saturate(120%);opacity:calc(.88 * var(--motion-scale))}
+.bg span{position:absolute;border-radius:50%;mix-blend-mode:multiply;
+  animation:drift linear infinite;will-change:transform}
+.bg .b1{width:46vw;height:46vw;left:-12vw;top:-8vw;background:#d68a64;
+  animation-duration:calc(46s / var(--motion-scale, 1))}
+.bg .b2{width:40vw;height:40vw;right:-10vw;top:22vh;background:#a4a667;
+  animation-duration:calc(58s / var(--motion-scale, 1));animation-direction:reverse}
+.bg .b3{width:38vw;height:38vw;left:18vw;top:78vh;background:#e8b27a;
+  animation-duration:calc(70s / var(--motion-scale, 1))}
+.bg .b4{width:32vw;height:32vw;right:8vw;top:140vh;background:#c46a4a;
+  animation-duration:calc(64s / var(--motion-scale, 1));animation-direction:reverse}
+.bg .b5{width:44vw;height:44vw;left:-6vw;top:200vh;background:#9da361;
+  animation-duration:calc(80s / var(--motion-scale, 1))}
+.bg .b6{width:36vw;height:36vw;right:-8vw;top:280vh;background:#d68a64;
+  animation-duration:calc(72s / var(--motion-scale, 1));animation-direction:reverse}
+@keyframes drift{
+  0%   {transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  25%  {transform:translate3d(6vw,-4vh,0) rotate(90deg) scale(1.08)}
+  50%  {transform:translate3d(-3vw,6vh,0) rotate(180deg) scale(.92)}
+  75%  {transform:translate3d(-6vw,-2vh,0) rotate(270deg) scale(1.05)}
+  100% {transform:translate3d(0,0,0) rotate(360deg) scale(1)}
+}
+[data-motion="0"] .bg{display:none}
+
+/* Grainy paper overlay */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.4;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .12 0 0 0 0 .1 0 0 0 0 .07 0 0 0 .25 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+/* ─────────────────────────────────────────────
+   LAYOUT
+   ───────────────────────────────────────────── */
+main{position:relative;z-index:2}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
+
+/* nav */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px clamp(20px,4vw,40px) 18px;
+  font-family:var(--sans);font-size:13px;letter-spacing:.02em;
+  background:transparent;
+  isolation:isolate;
+  transition:background .4s ease, backdrop-filter .4s ease, padding .4s ease;
+  -webkit-mask-image:linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-image:linear-gradient(to bottom, #000 62%, transparent 100%)}
+.topbar.scrolled{
+  background:linear-gradient(to bottom, rgba(241,234,217,.55) 0%, rgba(241,234,217,.42) 65%, rgba(241,234,217,0) 100%);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  padding-bottom:26px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .topbar.scrolled{background:linear-gradient(to bottom, rgba(241,234,217,.95) 0%, rgba(241,234,217,.85) 60%, rgba(241,234,217,0) 100%)}
+}
+.topbar .mark{font-family:var(--serif);font-style:italic;font-size:18px;
+  font-weight:400;color:var(--ink)}
+.topbar nav{display:flex;gap:22px}
+.topbar nav a{color:var(--ink);text-decoration:none;opacity:.7;
+  transition:opacity .2s}
+.topbar nav a:hover{opacity:1}
+.topbar .cta{background:var(--ink);color:var(--cream);padding:8px 14px;
+  border-radius:999px;text-decoration:none;font-weight:500;font-size:12px}
+.topbar .cta:hover{background:var(--terra-deep)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:120px;padding-bottom:calc(var(--section-pad) * var(--density) * .6)}
+.hero .hero-inner{width:100%}
+[data-hero="centered"] .hero{text-align:center}
+[data-hero="centered"] .hero .hero-inner{max-width:980px;margin:0 auto}
+[data-hero="centered"] .hero h1{margin-left:auto;margin-right:auto}
+[data-hero="centered"] .hero .lede{margin-left:auto;margin-right:auto}
+[data-hero="centered"] .hero-meta{justify-content:center}
+.hero .eyebrow{font-family:var(--sans);font-size:13px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--terra-deep);font-weight:600;margin-bottom:28px;
+  display:flex;align-items:center;gap:14px}
+.hero .eyebrow::before{content:"";width:46px;height:1px;background:var(--terra-deep);
+  display:inline-block}
+.hero h1{font-family:var(--serif);font-weight:300;
+  font-size:clamp(44px,7.2vw,92px);line-height:.96;letter-spacing:-.022em;
+  color:var(--ink);margin-bottom:24px}
+.hero h1 .un{display:inline-block;position:relative;color:var(--terra-deep)}
+.hero h1 .un:not(.un-explode)::after{content:"";position:absolute;left:-2%;right:-2%;top:48%;
+  height:.08em;background:var(--terra-deep);transform-origin:left;
+  animation:strike 2.4s 5s cubic-bezier(.7,0,.3,1) both;
+  animation-play-state:running;animation-iteration-count:1}
+[data-motion="0"] .hero h1 .un:not(.un-explode)::after{transform:scaleX(1);animation:none}
+@keyframes strike{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+/* Second (Un-) — vibrate then sanft explodieren, loop */
+.hero h1 .un-explode{display:inline-block;transform-origin:center;
+  animation:vibrateExplode 9s ease-in-out infinite;
+  animation-delay:.6s;will-change:transform,opacity,filter}
+[data-motion="0"] .hero h1 .un-explode{animation:none}
+@keyframes vibrateExplode{
+  0%, 6% { transform:translate(0,0) rotate(0) scale(1); opacity:1; filter:blur(0) }
+  10% { transform:translate(-.4px,.3px) rotate(-.3deg) }
+  14% { transform:translate(.4px,-.3px) rotate(.3deg) }
+  18% { transform:translate(-.8px,.5px) rotate(-.5deg) }
+  22% { transform:translate(.8px,-.5px) rotate(.5deg) }
+  26% { transform:translate(-1.4px,.8px) rotate(-.8deg) }
+  30% { transform:translate(1.4px,-.8px) rotate(.8deg) }
+  34% { transform:translate(-2.2px,1.2px) rotate(-1.2deg) }
+  38% { transform:translate(2.2px,-1.2px) rotate(1.2deg) }
+  42% { transform:translate(-3px,1.6px) rotate(-1.6deg); opacity:1 }
+  46% { transform:translate(3px,-1.6px) rotate(1.6deg); opacity:.95 }
+  50% { transform:translate(-3.6px,1.8px) rotate(-1.8deg); opacity:.85; filter:blur(.4px) }
+  54% { transform:translate(0,0) scale(1.18) rotate(0); opacity:.55; filter:blur(2px); letter-spacing:.04em }
+  60% { transform:scale(1.55); opacity:.18; filter:blur(8px); letter-spacing:.18em }
+  66%, 94% { transform:scale(1.9); opacity:0; filter:blur(14px) }
+  100% { transform:translate(0,0) scale(1) rotate(0); opacity:1; filter:blur(0); letter-spacing:0 }
+}
+
+.hero h1 em{font-style:italic;font-weight:400;color:var(--ink-2)}
+.hero h1 .amp{display:block;font-style:italic;font-weight:400;color:var(--ink-2);
+  font-size:.7em;line-height:1.1;margin:.06em 0}
+.hero .lede{max-width:620px;font-family:var(--serif);font-weight:400;
+  font-size:17px;line-height:1.55;color:var(--ink-2);
+  margin-top:8px}
+.hero-meta{margin-top:48px;display:flex;flex-wrap:wrap;gap:10px 18px;
+  align-items:baseline;justify-content:center;
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  letter-spacing:-.005em;color:var(--ink-2)}
+.hero-meta span{display:inline-flex;align-items:baseline}
+.hero-meta .sep{color:var(--terra);font-style:normal;opacity:.7}
+.scroll-cue{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);
+  font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-2);opacity:.7;display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-cue::after{content:"";width:1px;height:36px;background:currentColor;
+  animation:scrollLine 2.4s ease-in-out infinite;transform-origin:top}
+@keyframes scrollLine{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+
+/* QUOTE */
+.quote{padding:calc(var(--section-pad) * var(--density) * 1.15) 0}
+.quote-grid{width:fit-content;max-width:min(540px, 90%);margin:0 auto;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:28px;
+  position:relative;z-index:2}
+.quote-grid .tag{font-family:var(--sans);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;font-weight:600;color:var(--terra-deep);
+  display:inline-flex;align-items:center;gap:14px}
+.quote-grid .tag::before,.quote-grid .tag::after{content:"";width:44px;height:1px;
+  background:var(--terra-deep);opacity:.6}
+.quote q{font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(24px,3vw,42px);line-height:1.22;letter-spacing:-.01em;
+  color:var(--ink);quotes:"„" "“";display:block;text-wrap:pretty;max-width:22ch}
+.quote q::before,.quote q::after{color:var(--terra)}
+.quote .attr{font-family:var(--sans);font-size:12px;color:var(--ink-2);
+  font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+@media (max-width:780px){.quote q{font-size:24px}}
+
+/* WAS IST NEU */
+.neu{background:transparent;
+  padding-top:calc(var(--section-pad) * var(--density) * .5)}
+.neu .section-head{text-align:center}
+.neu-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
+  gap:10px 18px;margin-top:64px;
+  font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);
+  font-style:italic}
+.neu-meta .hl{background:rgba(74,107,140,.22);color:#2c4a6f;
+  padding:4px 12px;border-radius:6px;font-style:italic;
+  letter-spacing:.06em;text-transform:uppercase;font-size:.78em;font-weight:500}
+.neu-meta .sep{color:var(--ink-2);opacity:.45;font-style:normal}
+.section-head{margin-bottom:var(--section-head-gap)}
+.section-head h2{font-family:var(--serif);font-weight:300;
+  font-size:clamp(30px,3.6vw,50px);line-height:1.02;letter-spacing:-.018em}
+.section-head h2 em{font-style:italic;color:var(--terra-deep);font-weight:400}
+@media (max-width:780px){.section-head{margin-bottom:36px}}
+
+.neu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  background:none;border:0;border-radius:0}
+.neu-grid .card{
+  background:rgba(250,246,236,.55);
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  border-radius:22px;
+  padding:34px 26px 32px;
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 18px 40px -22px rgba(34,29,20,.22), 0 1px 0 rgba(255,255,255,.55) inset;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  text-align:center;min-height:260px;
+  transition:transform .4s cubic-bezier(.2,.7,.3,1.2), box-shadow .4s}
+.neu-grid .card:hover{transform:translateY(-3px);
+  box-shadow:0 24px 52px -22px rgba(34,29,20,.28), 0 1px 0 rgba(255,255,255,.65) inset}
+.neu-grid .card .icon{width:56px;height:56px;display:block;
+  filter:drop-shadow(0 4px 12px rgba(34,29,20,.16));margin-bottom:2px}
+.neu-grid .card .icon svg{width:100%;height:100%;display:block}
+.neu-grid .card .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--terra-deep);font-weight:600}
+.neu-grid .card h3{font-family:var(--serif);font-weight:400;font-size:19px;
+  line-height:1.22;letter-spacing:-.005em}
+.neu-grid .card p{font-size:13px;line-height:1.6;color:var(--ink-2);max-width:26ch}
+@media (max-width:980px){.neu-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.neu-grid{grid-template-columns:1fr}}
+
+/* THEMA — simplified */
+.thema{text-align:center;padding-bottom:calc(var(--section-pad) * var(--density) * .8)}
+.thema-body{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:980px;
+  margin:0 auto;text-align:left;position:relative;z-index:2;align-items:center}
+.thema-body p{font-family:var(--serif);font-size:18px;line-height:1.6;
+  color:var(--ink-2);font-weight:400;text-wrap:pretty;
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+@media (max-width:780px){.thema-body{grid-template-columns:1fr;gap:24px;max-width:520px}}
+
+/* QUOTE — flying chips around the quote */
+.quote{position:relative;min-height:clamp(480px, 64vh, 680px);
+  padding:calc(var(--section-pad) * var(--density) * .6) 0}
+.quote-tags{position:absolute;left:0;right:0;
+  top:calc(-100vh + 140px);bottom:0;width:100%;
+  overflow:hidden;pointer-events:none;z-index:1;margin:0}
+.quote-tags span{position:absolute;top:0;left:0;
+  font-family:var(--sans);font-size:13px;padding:8px 16px;
+  border-radius:999px;background:rgba(196,106,74,.14);color:var(--terra-deep);
+  font-weight:500;letter-spacing:.01em;white-space:nowrap;
+  user-select:none;cursor:default;
+  box-shadow:0 4px 12px -6px rgba(34,29,20,.14);
+  will-change:transform}
+[data-motion="0"] .quote{min-height:0}
+[data-motion="0"] .quote-tags{position:relative;inset:auto;height:auto;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+  max-width:780px;margin:48px auto 0}
+[data-motion="0"] .quote-tags span{position:static}
+
+/* DIE AUFGABE — drei Fragen */
+.aufgabe{background:var(--paper);border-top:1px solid var(--rule-soft);
+  padding-top:calc(var(--section-pad) * var(--density) * .5)}
+.aufgabe .section-head{margin-bottom:20px}
+.fragen{display:grid;grid-template-columns:repeat(3, minmax(0, 240px));
+  justify-content:center;gap:32px 28px;margin-top:32px;align-items:start}
+@media (max-width:880px){.fragen{grid-template-columns:repeat(2, minmax(0, 220px));max-width:480px;margin-left:auto;margin-right:auto}}
+@media (max-width:560px){.fragen{grid-template-columns:minmax(0, 240px);max-width:240px}}
+.frage{
+  background:rgba(241,234,217,.5);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:32px;
+  padding:34px 30px 32px;position:relative;
+  box-shadow:0 20px 44px -22px rgba(34,29,20,.24), 0 1px 0 rgba(255,255,255,.6) inset;
+  transition:transform .4s cubic-bezier(.2,.7,.3,1.2), box-shadow .4s}
+/* Bubble 1 — tail bottom-left, slight tilt */
+.frage:nth-child(1){border-bottom-left-radius:8px;transform:rotate(-.6deg)}
+.frage:nth-child(1)::after{left:18px;right:auto}
+/* Bubble 2 — tail bottom-center, no tilt */
+.frage:nth-child(2){border-bottom-right-radius:8px}
+.frage:nth-child(2)::after{left:auto;right:32%}
+/* Bubble 3 — tail bottom-right, slight tilt */
+.frage:nth-child(3){border-bottom-right-radius:8px;transform:rotate(.6deg)}
+.frage:nth-child(3)::after{left:auto;right:24px}
+.frage::after{content:"";position:absolute;bottom:-14px;
+  width:28px;height:28px;
+  background:rgba(241,234,217,.6);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border-right:1px solid rgba(255,255,255,.6);
+  border-bottom:1px solid rgba(255,255,255,.6);
+  transform:rotate(45deg);
+  border-bottom-right-radius:8px;
+  box-shadow:6px 6px 16px -10px rgba(34,29,20,.18)}
+.frage:hover{transform:translateY(-3px) rotate(0);
+  box-shadow:0 28px 56px -24px rgba(34,29,20,.3), 0 1px 0 rgba(255,255,255,.7) inset}
+.frage .num{font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:56px;line-height:.9;color:var(--terra);opacity:.92;
+  margin-bottom:8px}
+.frage h4{font-family:var(--serif);font-weight:400;font-size:18px;line-height:1.28;
+  margin-bottom:20px;letter-spacing:-.005em}
+.frage ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.frage ul li{font-family:var(--sans);font-size:13px;line-height:1.55;
+  color:var(--ink-2);padding-left:18px;position:relative}
+.frage ul li::before{content:"→";position:absolute;left:0;top:0;
+  color:var(--terra-deep);font-weight:500}
+.frage .limit{position:absolute;right:24px;bottom:20px;font-family:var(--sans);
+  font-size:11px;color:var(--ink-2);opacity:.65;letter-spacing:.06em}
+@media (max-width:980px){.fragen{grid-template-columns:1fr}}
+
+/* ALTERSSTUFEN */
+#alter{padding-top:calc(var(--section-pad) * var(--density) * .575)}
+.alter-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  max-width:720px;margin:0 auto;justify-items:center}
+.alter-card{aspect-ratio:1/1;width:100%;max-width:300px;
+  background:rgba(248,242,228,.38);
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:50%;padding:28px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;gap:4px;
+  box-shadow:0 22px 50px -24px rgba(34,29,20,.22), 0 1px 0 rgba(255,255,255,.55) inset}
+.alter-card .age{font-family:var(--serif);font-weight:300;
+  font-size:clamp(40px,5vw,60px);line-height:.92;letter-spacing:-.025em;
+  color:var(--ink)}
+.alter-card .age em{font-style:italic;color:var(--terra-deep)}
+.alter-card .lbl{font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-2);font-weight:600;margin:8px 0 16px}
+.alter-card .seats{display:flex;align-items:baseline;gap:10px;
+  font-family:var(--serif);font-size:24px;font-weight:300}
+.alter-card .seats em{font-style:italic;color:var(--olive-deep)}
+.alter-card .seats span{font-family:var(--sans);font-size:13px;color:var(--ink-2);
+  font-weight:500}
+.alter-card .dots{display:flex;gap:6px;margin-top:18px;flex-wrap:wrap}
+.alter-card .dots i{width:11px;height:11px;border-radius:50%;
+  background:var(--terra);opacity:.85;font-style:normal}
+.alter-card.b .dots i{background:var(--olive-deep)}
+.jury-bonus{margin-top:24px;padding:20px 26px;background:rgba(196,106,74,.08);
+  border:1px dashed var(--terra);border-radius:4px;
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--ink-2);text-wrap:pretty;display:flex;gap:18px;align-items:center}
+.jury-bonus strong{font-style:normal;font-family:var(--sans);font-weight:600;
+  color:var(--terra-deep);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;flex-shrink:0;background:var(--cream);
+  padding:8px 12px;border-radius:999px}
+.einzel-banner{margin:32px auto 0;max-width:680px;display:flex;align-items:center;gap:18px;
+  padding:18px 22px;background:rgba(196,106,74,.12);color:var(--ink);
+  border:1px solid rgba(196,106,74,.28);border-radius:14px}
+.einzel-banner .ico{font-family:var(--serif);font-style:italic;font-size:22px;
+  font-weight:400;color:var(--terra-deep);line-height:1;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(196,106,74,.18);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0}
+.einzel-banner div{flex:1}
+.einzel-banner b{display:block;font-family:var(--sans);font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);
+  font-weight:600;margin-bottom:4px}
+.einzel-banner span{font-family:var(--serif);font-size:14.5px;line-height:1.5;
+  font-weight:400;color:var(--ink-2)}
+@media (max-width:780px){.alter-grid{grid-template-columns:1fr}}
+
+/* ABLAUF / TIMELINE */
+.ablauf{background:var(--paper);border-top:1px solid var(--rule-soft)}
+.timeline{position:relative;display:grid;grid-template-columns:120px 1fr;gap:24px;
+  max-width:780px;margin:0 auto}
+.timeline::before{content:"";position:absolute;left:119px;top:6px;bottom:6px;
+  width:1px;background:var(--rule)}
+.tl-row{display:contents}
+.tl-row .when{font-family:var(--sans);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--terra-deep);
+  padding:16px 0;border-top:1px solid var(--rule-soft)}
+.tl-row:first-child .when,.tl-row:first-child .what{border-top:0;padding-top:0}
+.tl-row .what{padding:16px 0 16px 30px;border-top:1px solid var(--rule-soft);
+  position:relative}
+.tl-row .what::before{content:"";position:absolute;left:-5px;top:22px;
+  width:9px;height:9px;border-radius:50%;background:var(--terra);
+  border:2px solid var(--paper);box-shadow:0 0 0 1px var(--terra)}
+.tl-row:first-child .what::before{top:8px}
+.tl-row .what h4{font-family:var(--serif);font-weight:400;font-size:17px;
+  letter-spacing:-.005em;margin-bottom:4px}
+.tl-row .what p{font-size:13px;line-height:1.55;color:var(--ink-2);max-width:520px}
+.tl-row.now .what::before{background:var(--olive-deep);box-shadow:0 0 0 1px var(--olive-deep),
+  0 0 0 8px rgba(122,126,62,.18);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 1px var(--olive-deep),0 0 0 8px rgba(122,126,62,.18)}
+  50%{box-shadow:0 0 0 1px var(--olive-deep),0 0 0 14px rgba(122,126,62,0)}}
+@media (max-width:780px){
+  .timeline{grid-template-columns:1fr;gap:0}
+  .timeline::before{left:5px}
+  .tl-row{display:block;padding-left:30px;position:relative;padding-bottom:24px}
+  .tl-row .when{padding:0 0 8px;border:0}
+  .tl-row .what{padding:0;border:0}
+  .tl-row .what::before{left:-25px;top:6px}
+}
+
+/* DISKUSSION / GENERATIONEN */
+.diskussion{padding:calc(var(--section-pad) * var(--density) * 1.15) 0;position:relative}
+.disk-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+.disk-grid .vis{position:relative;aspect-ratio:1.1/1;border-radius:6px;
+  overflow:hidden;background:linear-gradient(135deg,#d68a64,#a4a667 60%,#82864A)}
+.disk-grid .vis svg{position:absolute;inset:0;width:100%;height:100%;
+  mix-blend-mode:overlay;opacity:.7}
+.disk-grid .vis .label{position:absolute;left:24px;bottom:20px;
+  font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);font-weight:600;opacity:.85}
+.disk-grid h3{font-family:var(--serif);font-weight:300;
+  font-size:clamp(26px,3vw,40px);line-height:1.05;letter-spacing:-.018em;
+  margin-bottom:24px}
+.disk-grid h3 em{font-style:italic;color:var(--terra-deep)}
+.disk-grid p{font-family:var(--serif);font-size:16px;line-height:1.6;
+  color:var(--ink-2);max-width:520px;text-wrap:pretty;margin-bottom:16px}
+.disk-grid .stream-hint{margin-top:24px;display:inline-flex;align-items:center;
+  gap:10px;padding:10px 16px;border:1px solid var(--rule);border-radius:999px;
+  font-family:var(--sans);font-size:12px;color:var(--ink-2);letter-spacing:.04em}
+.disk-grid .stream-hint::before{content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--terra);animation:pulse2 2s ease-in-out infinite}
+@keyframes pulse2{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+@media (max-width:880px){.disk-grid{grid-template-columns:1fr;gap:32px}}
+
+/* PUBLIKATION */
+.publi{padding:calc(var(--section-pad) * var(--density) * .7) 0 calc(var(--section-pad) * var(--density) * .55);
+  background:#3a2c1f;color:var(--cream);position:relative;overflow:hidden}
+.publi::before{content:"";position:absolute;left:-10%;top:-30%;width:60%;height:160%;
+  background:radial-gradient(circle,rgba(196,106,74,.32),transparent 60%);
+  filter:blur(80px)}
+.publi-book{margin:72px auto 0;max-width:220px;
+  filter:drop-shadow(0 32px 48px rgba(0,0,0,.35));position:relative;z-index:2}
+.publi-book svg{width:100%;height:auto;display:block}
+.authors-book{margin:auto auto 0;padding-top:28px;max-width:130px;width:100%;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.3))}
+.authors-book svg{width:100%;height:auto;display:block}
+.publi .wrap{position:relative}
+.publi .section-head h2,.publi .section-head .num strong{color:var(--cream)}
+.publi .section-head h2 em{color:var(--terra)}
+.publi .section-head .num{color:rgba(248,242,228,.6)}
+.publi .section-head .num strong{color:var(--terra)}
+.publi-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:stretch}
+.publi-text{display:flex;flex-direction:column;gap:28px;justify-content:flex-start}
+.publi-text h2{font-family:var(--serif);font-weight:300;
+  font-size:clamp(30px,3.6vw,50px);line-height:1.02;letter-spacing:-.018em;
+  color:var(--cream)}
+.publi-text h2 em{font-style:italic;color:var(--terra);font-weight:400}
+.publi p{font-family:var(--serif);font-size:18px;line-height:1.55;
+  color:rgba(248,242,228,.85);max-width:640px;text-wrap:pretty}
+.authors{padding:32px;border:1px solid rgba(248,242,228,.18);border-radius:18px;
+  background:rgba(248,242,228,.04);
+  display:flex;flex-direction:column}
+.authors h4{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:18px}
+.authors ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.authors li{font-family:var(--serif);font-size:15px;font-weight:400;
+  display:flex;align-items:baseline;gap:14px}
+.authors li::before{content:"";width:24px;height:1px;background:var(--terra)}
+.authors em{font-style:italic;color:var(--cream);font-weight:400}
+@media (max-width:880px){.publi-grid{grid-template-columns:1fr}}
+
+/* EINREICHUNG */
+.einreich{background:var(--cream);
+  padding-top:calc(var(--section-pad) * var(--density) * .68);
+  padding-bottom:calc(var(--section-pad) * var(--density) * 1.35)}
+.einreich-card{background:var(--paper);border:1px solid var(--rule);border-radius:6px;
+  padding:clamp(28px,4vw,56px);position:relative;overflow:hidden}
+.einreich-card::before{content:"";position:absolute;right:-80px;top:-80px;
+  width:280px;height:280px;border-radius:50%;background:var(--terra);opacity:.12;
+  filter:blur(40px)}
+.einreich-card .lead{font-family:var(--serif);font-weight:300;
+  font-size:clamp(22px,2.4vw,32px);line-height:1.18;letter-spacing:-.015em;
+  max-width:780px;margin-bottom:34px;position:relative}
+.einreich-card .lead em{font-style:italic;color:var(--terra-deep)}
+.einreich-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;position:relative}
+.einreich-grid h4{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terra-deep);font-weight:600;margin-bottom:14px}
+.einreich-grid .check{list-style:none;display:flex;flex-direction:column;gap:10px}
+.einreich-grid .check li{font-family:var(--sans);font-size:13.5px;line-height:1.6;
+  color:var(--ink-2);padding-left:26px;position:relative}
+.einreich-grid .check li::before{content:"✓";position:absolute;left:0;
+  color:var(--olive-deep);font-weight:600;font-family:var(--sans)}
+.einreich-grid .check li b{color:var(--ink);font-weight:600}
+.einreich-book{display:flex;align-items:center;gap:18px;margin-top:32px;
+  padding-top:24px;border-top:1px dashed var(--rule)}
+.einreich-book svg{width:44px;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(34,29,20,.18))}
+.einreich-book span{font-family:var(--serif);font-style:italic;font-size:14.5px;
+  color:var(--ink-2);line-height:1.4;max-width:24ch}
+.cta-box{background:rgba(248,242,228,.42);
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);
+  color:var(--ink);padding:32px;border-radius:18px;
+  display:flex;flex-direction:column;gap:18px;
+  box-shadow:0 22px 50px -24px rgba(34,29,20,.24), 0 1px 0 rgba(255,255,255,.6) inset}
+.cta-box .mail-label{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terra-deep);font-weight:600}
+.cta-box .mail{font-family:var(--serif);font-size:18px;font-weight:400;
+  color:var(--ink);text-decoration:none;letter-spacing:-.005em}
+.cta-box .mail:hover{color:var(--terra-deep)}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;
+  background:var(--terra);color:var(--cream);padding:14px 22px;
+  border-radius:999px;text-decoration:none;font-family:var(--sans);
+  font-weight:600;font-size:14px;letter-spacing:.02em;
+  transition:transform .2s, background .2s;align-self:flex-start}
+.cta-btn:hover{background:var(--terra-deep);transform:translateY(-1px)}
+.cta-btn::after{content:"→";font-family:var(--serif);font-style:italic;font-size:18px}
+.cta-foot{font-family:var(--sans);font-size:12px;color:rgba(248,242,228,.6);
+  line-height:1.5;margin-top:auto}
+@media (max-width:880px){.einreich-grid{grid-template-columns:1fr}}
+
+/* FAQ — flying Pong bubbles */
+#faq{padding-top:calc(var(--section-pad) * var(--density) * .55);
+  padding-bottom:calc(var(--section-pad) * var(--density) * .7)}
+.faq-list{position:relative;width:100%;max-width:1100px;
+  height:clamp(300px, 36vh, 390px);
+  margin:0 auto;overflow:hidden}
+.faq-list details{
+  position:absolute;top:0;left:0;margin:0;
+  max-width:300px;
+  background:rgba(248,242,228,.55);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:999px;
+  padding:0;
+  box-shadow:0 14px 30px -18px rgba(34,29,20,.22), 0 1px 0 rgba(255,255,255,.6) inset;
+  transition:max-width .5s cubic-bezier(.2,.7,.3,1.1), border-radius .4s, background .35s, box-shadow .35s;
+  animation:none !important;
+  will-change:transform}
+.faq-list details[open]{
+  max-width:560px;
+  border-radius:26px;
+  background:rgba(248,242,228,.78);
+  z-index:20;
+  box-shadow:0 28px 60px -22px rgba(34,29,20,.32), 0 1px 0 rgba(255,255,255,.7) inset}
+.faq-list summary{list-style:none;cursor:pointer;
+  padding:12px 22px;
+  font-family:var(--serif);font-size:14.5px;font-weight:400;
+  letter-spacing:-.005em;color:var(--ink);
+  display:inline-flex;align-items:center;gap:10px;
+  white-space:normal;text-wrap:balance;
+  border-radius:inherit;user-select:none}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-family:var(--serif);font-weight:300;font-size:18px;
+  color:var(--terra-deep);transition:transform .35s;margin-left:4px}
+.faq-list details[open] summary{font-size:17px;padding:18px 24px 6px}
+.faq-list details[open] summary::after{transform:rotate(45deg)}
+.faq-list details p{padding:0 26px 22px;font-family:var(--sans);font-size:14px;
+  line-height:1.6;color:var(--ink-2);max-width:none;text-wrap:pretty}
+[data-motion="0"] .faq-list{height:auto;display:flex;flex-direction:column;gap:8px}
+[data-motion="0"] .faq-list details{position:relative;max-width:680px;border-radius:24px}
+
+/* SOCIAL TEASER (printable card) */
+.social{background:linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+  border-top:1px solid var(--rule-soft)}
+.social-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.social-card{aspect-ratio:1080/1350;max-width:420px;width:100%;margin:0 auto;
+  background:linear-gradient(160deg,#c46a4a,#9c4c33 60%,#2a221a);
+  border-radius:12px;padding:36px 30px;color:var(--cream);
+  display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 24px 60px rgba(34,29,20,.25);position:relative;overflow:hidden}
+.social-card::before{content:"";position:absolute;right:-40%;top:-20%;
+  width:90%;height:90%;border-radius:50%;background:#e8b27a;opacity:.5;
+  filter:blur(40px)}
+.social-card .head{position:relative}
+.social-card .head .badge{display:inline-block;font-family:var(--sans);font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 10px;
+  background:rgba(248,242,228,.18);border-radius:999px;margin-bottom:24px}
+.social-card h3{font-family:var(--serif);font-weight:300;font-size:32px;line-height:1;
+  letter-spacing:-.018em;position:relative}
+.social-card h3 em{font-style:italic}
+.social-card .body{position:relative;font-family:var(--serif);font-size:15px;
+  line-height:1.5;text-wrap:pretty}
+.social-card .foot{position:relative;display:flex;justify-content:space-between;
+  align-items:flex-end;font-family:var(--sans);font-size:11px;letter-spacing:.08em}
+.social-card .foot .when{font-size:14px;font-weight:600;letter-spacing:.04em}
+.social-text{font-family:var(--sans);font-size:14px;line-height:1.6;color:var(--ink-2)}
+.social-text .tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px}
+.social-text .tags span{font-size:12px;color:var(--terra-deep)}
+.social-text .copy-btn{margin-top:20px;background:transparent;border:1px solid var(--rule);
+  padding:10px 16px;border-radius:999px;font-family:var(--sans);font-size:12px;
+  font-weight:500;cursor:default;color:var(--ink);letter-spacing:.02em}
+.social-text .copy-btn:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+@media (max-width:780px){.social-wrap{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
+  font-family:var(--sans);font-size:13px;line-height:1.6}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
+  padding-bottom:48px;border-bottom:1px solid rgba(248,242,228,.15)}
+.foot-grid .mark{font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:24px;color:var(--cream);line-height:1.1;letter-spacing:-.008em}
+.foot-grid .mark-date{margin-top:14px;font-family:var(--serif);font-style:italic;
+  font-size:16px;color:rgba(248,242,228,.7);letter-spacing:.01em}
+.foot-grid .mark span{display:block;font-size:13px;font-family:var(--sans);
+  letter-spacing:.16em;text-transform:uppercase;font-style:normal;
+  color:var(--terra);margin-top:8px;font-weight:600}
+.foot-col h5{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:14px}
+.foot-col a{color:rgba(248,242,228,.75);text-decoration:none;display:block;
+  margin-bottom:8px}
+.foot-col a.foot-link{display:inline-flex;align-items:center;gap:8px}
+.foot-ico{width:14px;height:14px;flex-shrink:0;color:var(--terra);display:block}
+.foot-col a:hover{color:var(--cream)}
+.foot-bottom{padding-top:24px;display:flex;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;font-size:12px;color:rgba(248,242,228,.5)}
+@media (max-width:880px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+
+/* Reveal animations on scroll */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+[data-motion="0"] .reveal{opacity:1;transform:none;transition:none}
+
+/* Density */
+[data-density="compact"]{--density:.82}
+[data-density="airy"]{--density:1.25}
+
+</style>
+<script>document.documentElement.style.setProperty('--motion-scale','1.1');</script>
+</head>
+<body data-motion="1" data-density="airy" data-hero="centered">
+
+<header class="topbar">
+  <div class="mark">Pädagogik-Olympiade <em>’27</em></div>
+  <nav>
+    <a href="#thema">Thema</a>
+    <a href="#aufgabe">Aufgabe</a>
+    <a href="#ablauf">Ablauf</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="cta" href="#einreichen">Mitmachen</a>
+</header>
+
+<main>
+
+<!-- fluid background -->
+<div class="bg" aria-hidden="true">
+  <span class="b1"></span><span class="b2"></span><span class="b3"></span>
+  <span class="b4"></span><span class="b5"></span><span class="b6"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero wrap" id="top">
+  <div class="hero-inner" id="heroInner">
+    <h1 data-hero-headline>
+      <span class="un">(Un-)</span>Gleichheit
+      <span class="amp">&amp;</span>
+      <span class="un un-explode">(Un-)</span><em>Gerechtigkeit</em>
+    </h1>
+    <p class="lede">
+      Eine Olympiade, die nicht nach Antworten fragt — sondern nach den klügeren,
+      reflektierteren, mutigeren <em>Fragen</em>. Komm an die Universität Bielefeld
+      und diskutiere mit Wissenschaftler:innen.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────── EINSTEIN-ZITAT ─────────── -->
+<section class="quote wrap">
+  <div class="quote-tags" id="quoteTags" aria-hidden="true">
+    <span>Bildungsgerechtigkeit</span><span>Chancen</span><span>Anerkennung</span>
+    <span>Inklusion</span><span>Klasse · Milieu</span><span>Generationen</span>
+    <span>Teilhabe</span><span>Care</span>
+    <span>Privilegien</span><span>Diversität</span><span>Klassismus</span>
+    <span>Identität</span><span>Herkunft</span>
+  </div>
+  <div class="quote-grid reveal" id="quoteObstacle">
+    <div class="tag">Leitmotiv 2027</div>
+    <q>If I had an hour to solve a problem and my life depended on the
+    solution, I would spend the first 55 minutes determining the proper
+    question to ask.</q>
+    <div class="attr">— zugeschrieben Albert Einstein</div>
+  </div>
+</section>
+<!-- ─────────── THEMA ─────────── -->
+<section class="thema wrap" id="thema">
+  <div class="thema-body reveal" id="themaBody">
+    <p>Wer bekommt was — und warum? Wer entscheidet, was gerecht ist? Was bedeutet
+    Gleichheit, wenn Lebenswelten so unterschiedlich sind, dass dasselbe Angebot
+    für die einen Selbstverständlichkeit und für die anderen Hürde ist?</p>
+    <p>Wir laden euch ein, das Thema von dort zu denken, wo ihr steht: in eurer
+    Schule, eurer Stadt, eurer Nachbarschaft. Mit pädagogischer Theorie als Werkzeug,
+    nicht als Pflicht. Es geht uns um <em>Lösungen und Vorschläge aus euren
+    Lebenswelten</em> — am liebsten solche, die man direkt umsetzen könnte
+    oder schon umsetzt.</p>
+  </div>
+</section>
+
+
+<!-- ─────────── WAS IST NEU ─────────── -->
+<section class="neu" id="neu">
+  <div class="wrap">
+    <div class="section-head reveal">      <h2>2027 wird <em>anders</em>.</h2>
+    </div>
+    <div class="neu-grid reveal">
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 18 Q12 10 20 10 H60 Q68 10 68 18 V44 Q68 52 60 52 H34 L22 64 V52 Q12 52 12 44 Z" fill="#C46A4A"/>
+            <text x="40" y="40" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="30" font-weight="300" text-anchor="middle" fill="#F8F2E4">?</text>
+          </svg>
+        </div>
+        <div class="k">Format</div>
+        <h3>Fragen statt Wettbewerb</h3>
+        <p>Keine Plakate, keine Podcasts, keine Klassenrang­liste mehr. Im Zentrum stehen
+        eure eigenen Fragen — und ihre Begründung.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="22" width="46" height="52" rx="2" fill="#9c4c33" opacity=".4" transform="rotate(-7 37 48)"/>
+            <rect x="18" y="18" width="46" height="52" rx="2" fill="#C46A4A" opacity=".75" transform="rotate(-2 41 44)"/>
+            <rect x="22" y="14" width="46" height="52" rx="2" fill="#C46A4A"/>
+            <rect x="28" y="24" width="30" height="2.2" rx=".8" fill="#F8F2E4" opacity=".95"/>
+            <rect x="28" y="31" width="22" height="2.2" rx=".8" fill="#F8F2E4" opacity=".75"/>
+            <rect x="28" y="38" width="26" height="2.2" rx=".8" fill="#F8F2E4" opacity=".75"/>
+          </svg>
+        </div>
+        <div class="k">Einreichung</div>
+        <h3>Drei Fragen, drei Texte</h3>
+        <p>Je Frage eine kurze Erläuterung. Maximal 4&thinsp;000 Zeichen pro Begründung,
+        digital oder handschriftlich.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18 Q6 12 12 12 H38 Q44 12 44 18 V36 Q44 42 38 42 H22 L14 50 V42 Q6 42 6 36 Z" fill="#7a7e3e" opacity=".82"/>
+            <path d="M34 30 Q34 24 40 24 H66 Q72 24 72 30 V48 Q72 54 66 54 H58 L66 62 V54 Q34 54 34 48 Z" fill="#C46A4A"/>
+          </svg>
+        </div>
+        <div class="k">Vor Ort</div>
+        <h3>Diskussion mit Forschenden</h3>
+        <p>Zehn Ausgewählte sprechen am 19.&nbsp;Februar mit Wissenschaftler:innen über
+        ihre Fragen — generationen­übergreifend, auf Augenhöhe.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="10" width="50" height="66" rx="1.5" fill="#9c4c33" opacity=".4" transform="rotate(-5 39 43)"/>
+            <g transform="rotate(3 40 40)">
+              <rect x="10" y="8" width="54" height="68" rx="1.5" fill="#C46A4A"/>
+              <rect x="10" y="8" width="4" height="68" fill="#9c4c33"/>
+              <rect x="20" y="22" width="32" height="2.2" rx=".8" fill="#F8F2E4" opacity=".95"/>
+              <rect x="20" y="28" width="26" height="2.2" rx=".8" fill="#F8F2E4" opacity=".9"/>
+              <text x="37" y="58" font-family="Newsreader, Georgia, serif" font-style="italic" font-weight="300" font-size="24" text-anchor="middle" fill="#F8F2E4">&amp;</text>
+              <rect x="20" y="66" width="20" height="1.5" rx=".6" fill="#F8F2E4" opacity=".7"/>
+            </g>
+          </svg>
+        </div>
+        <div class="k">Danach</div>
+        <h3>Publikation</h3>
+        <p>Ergebnisse erscheinen in einem Band, an dem Schüler:innen, Forschende und
+        Jurymitglieder als Autor:innen beteiligt sind.</p>
+      </div>
+    </div>
+    <div class="neu-meta reveal">
+      <span class="hl">19. Februar 2027</span>
+      <span class="sep">·</span>
+      <span class="hl">Universität Bielefeld</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── DIE AUFGABE ─────────── -->
+<section class="aufgabe" id="aufgabe">
+  <div class="wrap">
+    <div class="section-head reveal">      <h2><em>Deine</em> drei Fragen</h2>
+    </div>
+    <p class="reveal" style="max-width:780px;font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink-2);margin-bottom:8px">
+      Reicht drei Fragen ein, die euch zum Thema umtreiben. Pro Frage eine
+      Begründung — handschriftlich oder digital. Entscheidend ist nicht die
+      Frage selbst, sondern was hinter ihr steckt.
+    </p>
+    <div class="fragen reveal">
+      <article class="frage">
+        <div class="num">01</div>
+        <h4>Warum ist diese Frage relevant?</h4>
+        <ul>
+          <li>Was steht für wen auf dem Spiel?</li>
+          <li>Worauf reagierst du gerade — Beobachtung, Erlebnis, Debatte?</li>
+          <li>Was passiert, wenn niemand sie stellt?</li>
+        </ul>
+        <span class="limit">max. 4 000 Zeichen</span>
+      </article>
+      <article class="frage">
+        <div class="num">02</div>
+        <h4>Wie bist du auf sie gekommen?</h4>
+        <ul>
+          <li>Welche Theorien, Texte, Daten haben dich geprägt?</li>
+          <li>Welche gesellschaftlichen Bezüge siehst du?</li>
+          <li>Wo berührt das den Pädagogik-Unterricht?</li>
+        </ul>
+        <span class="limit">max. 4 000 Zeichen</span>
+      </article>
+      <article class="frage">
+        <div class="num">03</div>
+        <h4>Welche Haltung vertrittst du?</h4>
+        <ul>
+          <li>Welche Antwort tendierst du zu — und warum?</li>
+          <li>Welche Einwände nimmst du ernst?</li>
+          <li>Was würdest du konkret vorschlagen?</li>
+        </ul>
+        <span class="limit">max. 4 000 Zeichen</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── ALTERSSTUFEN ─────────── -->
+<section class="wrap" id="alter">
+  <div class="section-head reveal">    <h2>Du bist <em>eingeladen</em>.</h2>
+  </div>
+  <div class="alter-grid reveal">
+    <div class="alter-card a">
+      <div class="age">9<em>–</em>11.</div>
+      <div class="lbl">Jahrgangsstufe</div>
+      <div class="seats"><em>5</em><span>Plätze</span></div>
+      <div class="dots">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </div>
+    <div class="alter-card b">
+      <div class="age">12<em>–</em>13.</div>
+      <div class="lbl">Jahrgangsstufe</div>
+      <div class="seats"><em>5</em><span>Plätze</span></div>
+      <div class="dots">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </div>
+  </div>
+  <div class="jury-bonus reveal" hidden></div>
+  </div>
+</section>
+
+<!-- ─────────── ABLAUF ─────────── -->
+<section class="ablauf" id="ablauf">
+  <div class="wrap">
+    <div class="section-head reveal">      <h2>Vom <em>Einreichen</em> zur Publikation.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-row now">
+        <div class="when"></div>
+        <div class="what">
+          <h4>Aufruf läuft</h4>
+          <p>Wir sind offen für eure  Fragen! </p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when">Herbst 2026</div>
+        <div class="what">
+          <h4>Einsendeschluss</h4>
+          <p>Sende uns deine drei Fragen plus drei Begründungen. </p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when">Winter 2026 / 27</div>
+        <div class="what">
+          <h4>Auswahl durch die Jury</h4>
+          <p>Eine Jury aus Wissenschaftler:innen, Lehrkräften und Schüler:innen wählt zehn Teilnehmende aus.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when">19.02.2027</div>
+        <div class="what">
+          <h4>Olympiade in Bielefeld</h4>
+          <p>Die ausgewählten Teilnehmer:innen diskutieren ihre Fragen mit Wissenschaftler:innen an der Universität Bielefeld.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when">Danach</div>
+        <div class="what">
+          <h4>Publikation</h4>
+          <p>Die Ergebnisse der Diskussion erscheinen in einem Sammelband, mit den Schüler:innen als Co-Autor:innen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PUBLIKATION ─────────── -->
+<section class="publi" id="publikation">
+  <div class="wrap">
+    <div class="publi-grid reveal">
+      <div class="publi-text">
+        <h2>Druck machen</h2>
+        <p>Die Ergebnisse der Diskussion werden noch der Olympiade in einer Publikation veröffentlicht, an der Schüler:innen ebenso als Autor:innen beteiligt sind wie die Wissenschaftler:innen und Jurymitglieder.</p>
+      </div>
+      <div class="authors">
+        <h4>Mit-Autor:innen</h4>
+        <ul>
+          <li>10 Schüler:innen <em>
+</em></li>
+          <li>Wissenschaftler:innen aus Universitäten und Hochschulen</li>
+          <li>Jury aus Lehrkräften, SchülerInnen &amp; Forschenden</li>
+        </ul>
+        <div class="authors-book" aria-hidden="true">
+          <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="coverGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#d57756"/>
+                <stop offset="1" stop-color="#9c4c33"/>
+              </linearGradient>
+              <linearGradient id="spineGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#5d2912"/>
+                <stop offset="1" stop-color="#9c4c33"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="132" cy="302" rx="86" ry="7" fill="#000" opacity=".28"/>
+            <g transform="rotate(-4 132 160)">
+              <rect x="44" y="40" width="150" height="220" rx="2" fill="#7a3f2a" opacity=".7"/>
+            </g>
+            <g transform="rotate(2 132 160)">
+              <rect x="56" y="42" width="148" height="218" rx="1" fill="#FAF6EC"/>
+              <g stroke="#e6d6b3" stroke-width=".6" fill="none">
+                <line x1="56" y1="50"  x2="204" y2="50"/>
+                <line x1="56" y1="58"  x2="204" y2="58"/>
+                <line x1="56" y1="66"  x2="204" y2="66"/>
+                <line x1="56" y1="244" x2="204" y2="244"/>
+                <line x1="56" y1="252" x2="204" y2="252"/>
+              </g>
+            </g>
+            <g transform="rotate(2 132 160)">
+              <rect x="50" y="38" width="152" height="224" rx="2" fill="url(#coverGrad)"/>
+              <rect x="50" y="38" width="7" height="224" fill="url(#spineGrad)"/>
+              <rect x="50" y="38" width="152" height="2" fill="#9c4c33" opacity=".55"/>
+              <rect x="68" y="56" width="118" height="188" stroke="#F8F2E4" stroke-width=".5" stroke-opacity=".35" fill="none"/>
+              <text x="127" y="82" font-family="Manrope, sans-serif" font-size="5.5" letter-spacing="2" text-anchor="middle" fill="#F8F2E4" opacity=".82">PÄDAGOGIK-OLYMPIADE 2027</text>
+              <line x1="108" y1="90" x2="146" y2="90" stroke="#F8F2E4" stroke-width=".6" opacity=".45"/>
+              <text x="127" y="118" font-family="Newsreader, serif" font-style="italic" font-weight="300" font-size="13" text-anchor="middle" fill="#F8F2E4">(Un-)Gleichheit</text>
+              <text x="127" y="140" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="22" text-anchor="middle" fill="#F8F2E4">&amp;</text>
+              <text x="127" y="162" font-family="Newsreader, serif" font-style="italic" font-weight="300" font-size="13" text-anchor="middle" fill="#F8F2E4">(Un-)Gerechtigkeit</text>
+              <line x1="95" y1="180" x2="159" y2="180" stroke="#F8F2E4" stroke-width=".5" opacity=".4"/>
+              <rect x="86" y="190" width="82" height="2" rx=".6" fill="#F8F2E4" opacity=".55"/>
+              <rect x="96" y="198" width="62" height="2" rx=".6" fill="#F8F2E4" opacity=".45"/>
+              <rect x="86" y="206" width="82" height="2" rx=".6" fill="#F8F2E4" opacity=".45"/>
+              <circle cx="127" cy="232" r="10" stroke="#F8F2E4" stroke-width=".8" fill="none" opacity=".75"/>
+              <text x="127" y="236" font-family="Newsreader, serif" font-style="italic" font-weight="400" font-size="11" text-anchor="middle" fill="#F8F2E4" opacity=".9">P·O</text>
+            </g>
+            <g transform="rotate(2 132 160)">
+              <rect x="200" y="40" width="4" height="222" fill="#000" opacity=".06"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── EINREICHEN ─────────── -->
+<section class="einreich wrap" id="einreichen">
+  <div class="section-head reveal">    <h2>So <em>reichst du ein</em>.</h2>
+  </div>
+  <div class="einreich-card reveal">
+    <div class="einreich-grid">
+      <div>
+        <h4>Was du einreichst</h4>
+        <ul class="check">
+          <li><b>Drei Fragen</b> zum Thema „(Un-)Gleichheit und (Un-)Gerechtigkeit“.</li>
+          <li><b>Drei Begründungen</b>, jeweils max. 4 000 Zeichen (ca. eine Seite pro Frage).</li>
+          <li><b>Pädagogische, gesellschaftliche oder wissenschaftliche Bezüge</b> — wo immer du sie siehst.</li>
+          <li><b>Deine Haltung</b> zur jeweiligen Frage.</li>
+          <li><b>Format frei:</b> digital getippt oder handschriftlich gescannt.</li>
+          <li><b>Einzelbewerbung</b> — bitte keine Gruppen oder Kurse.</li>
+          <li>Mit Name, Jahrgangsstufe, Schule &amp; Kontakt­möglichkeit.</li>
+        </ul>
+      </div>
+      <div class="cta-box">
+        <span class="mail-label">Einreichung &amp; Rückfragen</span>
+        <a href="mailto:hallo@paedagogik-olympiade.de?subject=Bewerbung%20P%C3%A4dagogik-Olympiade%202027" class="mail">hallo@paedagogik-olympiade.de</a>
+        <a href="mailto:hallo@paedagogik-olympiade.de?subject=Bewerbung%20P%C3%A4dagogik-Olympiade%202027" class="cta-btn">Bewerbung schicken</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FAQ ─────────── -->
+<section class="wrap" id="faq">
+  <div class="section-head reveal">    <h2>Noch <em>Fragen</em>?</h2>
+  </div>
+  <div class="faq-list reveal" id="faqList">
+    <details>
+      <summary>Kann ich als Team einreichen?</summary>
+      <p>Nein — 2027 sind nur Einzelbewerbungen zugelassen. Es geht um deine
+      Fragen, deine Begründung, deine Haltung. Über deine Themen kannst du
+      natürlich gerne mit anderen sprechen.</p>
+    </details>
+    <details>
+      <summary>Wie lang darf eine Begründung sein?</summary>
+      <p>Maximal 4 000 Zeichen — etwa eine Seite pro Frage. Kürzer ist okay,
+      länger nicht.</p>
+    </details>
+    <details>
+      <summary>Muss ich Pädagogik-Unterricht haben?</summary>
+      <p>Erwartet werden Kenntnisse aus dem Pädagogik-Unterricht. Wenn du
+      keinen Pädagogik-Kurs belegst, dafür aber tief in sozialen, psychologischen
+      oder bildungs­politischen Themen denkst — bewirb dich trotzdem. Wir lesen
+      jede Einreichung.</p>
+    </details>
+    <details>
+      <summary>Was zählt als „pädagogischer Bezug“?</summary>
+      <p>Theorien (z. B. Sozialisation, Bildung, Anerkennung), empirische Daten
+      (z. B. PISA, Bildungs­bericht, Hurrelmanns Jugendstudien), wissenschaftliche
+      Debatten, aber auch konkrete pädagogische Praxis — Schule, Jugendhilfe,
+      Erziehung, Care.</p>
+    </details>
+    <details>
+      <summary>Handschriftlich oder digital — was ist besser?</summary>
+      <p>Beides ist willkommen. Wenn du handschriftlich einreichst, achte auf
+      gute Lesbarkeit beim Scan.</p>
+    </details>
+    <details>
+      <summary>Was passiert, wenn ich ausgewählt werde?</summary>
+      <p>Du wirst zur Olympiade am 19.&nbsp;Februar 2027 nach Bielefeld eingeladen,
+      diskutierst dort mit Wissenschaftler:innen und wirst — wenn du möchtest —
+      Mit-Autor:in der anschließenden Publikation.</p>
+    </details>
+    <details>
+      <summary>Wie sieht der Tag in Bielefeld aus?</summary>
+      <p>Diskussions­runden in kleinen und großen Formaten, Begegnungen mit
+      Forschenden, dazwischen Mensa und Pausen. Genaueres Programm folgt — und
+      ja, eine Aufzeichnung ist angedacht.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="mark">Pädagogik-<br>Olympiade ’27<span>Universität Bielefeld</span></div>
+        <div class="mark-date">19. Februar 2027</div>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt</h5>
+        <a href="mailto:hallo@paedagogik-olympiade.de" class="foot-link"><svg class="foot-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M3 6h18v12H3z M3 6l9 7l9-7"/></svg>hallo@paedagogik-olympiade.de</a>
+        <a href="https://www.instagram.com/paedagogik_olympiade" target="_blank" rel="noopener" class="foot-link"><svg class="foot-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg>@paedagogik_olympiade</a>
+        <a href="https://www.tiktok.com/@paedagogik.olympiade" target="_blank" rel="noopener" class="foot-link"><svg class="foot-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.5 3h2.3a4.3 4.3 0 0 0 3.4 3.4v2.3a6.6 6.6 0 0 1-3.7-1.2v6.6a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.4a3.2 3.2 0 1 0 2.2 3v-11Z"/></svg>@paedagogik.olympiade</a>
+      </div>
+      <div class="foot-col">
+        <h5>Postanschrift</h5>
+        <p style="color:rgba(248,242,228,.75)">
+          Prof. Dr. Ullrich Bauer<br>
+          Universität Bielefeld<br>
+          AG Sozialisation (ZPI)<br>
+          Konsequenz 41A, Z-Gebäude<br>
+          33501 Bielefeld
+        </p>
+      </div>
+      <div class="foot-col">
+        <h5>Rechtliches</h5>
+        <a href="impressum.html">Impressum</a>
+        <a href="impressum.html#datenschutz">Datenschutz</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 / 27 · Pädagogik-Olympiade</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.15, rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Animate thema title strike on view
+const themaT = document.querySelector('[data-thema-title]');
+if(themaT){ io.observe(themaT); }
+// Frosted header on scroll
+const topbar = document.querySelector('.topbar');
+const onScroll = () => {
+  if(!topbar) return;
+  topbar.classList.toggle('scrolled', window.scrollY > 24);
+};
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+// Floating physics for quote-tags (Pong-style bouncing chips around the Einstein quote)
+(function(){
+  const wrap = document.getElementById('quoteTags');
+  if(!wrap) return;
+  const items = [...wrap.children];
+  let state = [];
+  let obstacles = [];
+  let raf = 0;
+
+  function getObstacles(){
+    const wr = wrap.getBoundingClientRect();
+    const pad = 22;
+    const list = [];
+    ['#quoteObstacle', '#heroInner'].forEach(sel => {
+      const el = document.querySelector(sel);
+      if(!el) return;
+      const tr = el.getBoundingClientRect();
+      list.push({
+        x: tr.left - wr.left - pad,
+        y: tr.top  - wr.top  - pad,
+        w: tr.width  + pad*2,
+        h: tr.height + pad*2
+      });
+    });
+    return list;
+  }
+
+  function resolveObstacle(){
+    if(!obstacles.length) return;
+    for(let i=0;i<state.length;i++){
+      const s = state[i];
+      const sLeft = s.x, sRight = s.x + s.w;
+      const sTop = s.y, sBottom = s.y + s.h;
+      for(let k=0;k<obstacles.length;k++){
+        const o = obstacles[k];
+        if(sRight > o.x && sLeft < o.x + o.w && sBottom > o.y && sTop < o.y + o.h){
+          const pushLeft  = sRight - o.x;
+          const pushRight = (o.x + o.w) - sLeft;
+          const pushUp    = sBottom - o.y;
+          const pushDown  = (o.y + o.h) - sTop;
+          const min = Math.min(pushLeft, pushRight, pushUp, pushDown);
+          if(min === pushLeft){ s.x -= pushLeft;  s.vx = -Math.abs(s.vx); }
+          else if(min === pushRight){ s.x += pushRight; s.vx =  Math.abs(s.vx); }
+          else if(min === pushUp){ s.y -= pushUp; s.vy = -Math.abs(s.vy); }
+          else { s.y += pushDown; s.vy = Math.abs(s.vy); }
+        }
+      }
+    }
+  }
+
+  function measureAndPlace(){
+    obstacles = getObstacles();
+    // measure each chip's natural size
+    items.forEach(el => {
+      el.style.position = 'static';
+      el.style.transform = '';
+    });
+    const sizes = items.map(el => {
+      const r = el.getBoundingClientRect();
+      return {w: r.width, h: r.height};
+    });
+    items.forEach(el => { el.style.position = 'absolute'; });
+    const cw = wrap.clientWidth, ch = wrap.clientHeight;
+    state = items.map((el, i) => {
+      const w = sizes[i].w, h = sizes[i].h;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = .20 + Math.random() * .24;
+      // Half the chips spawn in left/right gaps beside the quote;
+      // the other half use a "20% tiefer" random spread.
+      const quoteObs = obstacles[0]; // #quoteObstacle is registered first
+      const useSide = i < Math.ceil(items.length / 2) && quoteObs;
+      let x, y, tries = 0;
+      do {
+        if(useSide){
+          const leftSide = (i % 2 === 0);
+          const sideStart = leftSide ? 0 : quoteObs.x + quoteObs.w;
+          const sideW = leftSide ? quoteObs.x : (cw - (quoteObs.x + quoteObs.w));
+          const usableX = Math.max(20, sideW - w);
+          x = sideStart + Math.random() * usableX;
+          // vertically stay near quote band
+          const yMin = Math.max(0, quoteObs.y - 24);
+          const yMax = Math.min(ch - h, quoteObs.y + quoteObs.h + 24);
+          y = yMin + Math.random() * Math.max(20, yMax - yMin);
+        } else {
+          const yShift = ch * 0.20;
+          x = Math.random() * Math.max(20, cw - w);
+          y = yShift + Math.random() * Math.max(20, ch - h - yShift);
+        }
+        tries++;
+        if(!obstacles.length) break;
+        const overlaps = obstacles.some(o =>
+          (x + w > o.x && x < o.x + o.w &&
+           y + h > o.y && y < o.y + o.h));
+        if(!overlaps) break;
+      } while(tries < 80);
+      return {
+        el, w, h, x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed
+      };
+    });
+    // resolve initial overlaps with a few relaxation passes
+    for(let pass=0; pass<10; pass++){
+      resolveCollisions();
+      resolveObstacle();
+    }
+    state.forEach(s => s.el.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`);
+  }
+
+  function resolveCollisions(){
+    for(let i=0;i<state.length;i++){
+      for(let j=i+1;j<state.length;j++){
+        const a = state[i], b = state[j];
+        const acx = a.x + a.w/2, acy = a.y + a.h/2;
+        const bcx = b.x + b.w/2, bcy = b.y + b.h/2;
+        const dx = bcx - acx, dy = bcy - acy;
+        const minX = (a.w + b.w)/2 + 2;
+        const minY = (a.h + b.h)/2 + 2;
+        const overlapX = minX - Math.abs(dx);
+        const overlapY = minY - Math.abs(dy);
+        if(overlapX > 0 && overlapY > 0){
+          if(overlapX < overlapY){
+            const sign = dx >= 0 ? 1 : -1;
+            a.x -= overlapX/2 * sign;
+            b.x += overlapX/2 * sign;
+            [a.vx, b.vx] = [b.vx, a.vx];
+          } else {
+            const sign = dy >= 0 ? 1 : -1;
+            a.y -= overlapY/2 * sign;
+            b.y += overlapY/2 * sign;
+            [a.vy, b.vy] = [b.vy, a.vy];
+          }
+        }
+      }
+    }
+  }
+
+  let lastTime = performance.now();
+  function tick(now){
+    const dt = Math.min(32, now - lastTime) / 16.67;
+    lastTime = now;
+    if(document.body.dataset.motion === '0'){
+      raf = requestAnimationFrame(tick);
+      return;
+    }
+    const cw = wrap.clientWidth, ch = wrap.clientHeight;
+    state.forEach(s => {
+      s.x += s.vx * dt;
+      s.y += s.vy * dt;
+      if(s.x < 0){ s.x = 0; s.vx = Math.abs(s.vx); }
+      if(s.y < 0){ s.y = 0; s.vy = Math.abs(s.vy); }
+      if(s.x + s.w > cw){ s.x = cw - s.w; s.vx = -Math.abs(s.vx); }
+      if(s.y + s.h > ch){ s.y = ch - s.h; s.vy = -Math.abs(s.vy); }
+    });
+    resolveCollisions();
+    resolveObstacle();
+    state.forEach(s => s.el.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function start(){
+    measureAndPlace();
+    cancelAnimationFrame(raf);
+    lastTime = performance.now();
+    raf = requestAnimationFrame(tick);
+  }
+
+  let resizeTimer = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(start, 150);
+  });
+
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(start);
+  } else {
+    setTimeout(start, 250);
+  }
+})();
+
+// FAQ flying Pong bubbles
+(function(){
+  const list = document.getElementById('faqList');
+  if(!list) return;
+  const items = [...list.querySelectorAll('details')];
+  let state = [];
+  let raf = 0;
+
+  function resolveCollisions(){
+    for(let i=0;i<state.length;i++){
+      for(let j=i+1;j<state.length;j++){
+        const a = state[i], b = state[j];
+        if(a.el.open || b.el.open) continue;
+        const acx = a.x + a.w/2, acy = a.y + a.h/2;
+        const bcx = b.x + b.w/2, bcy = b.y + b.h/2;
+        const dx = bcx - acx, dy = bcy - acy;
+        const minX = (a.w + b.w)/2 + 4;
+        const minY = (a.h + b.h)/2 + 4;
+        const overlapX = minX - Math.abs(dx);
+        const overlapY = minY - Math.abs(dy);
+        if(overlapX > 0 && overlapY > 0){
+          if(overlapX < overlapY){
+            const sign = dx >= 0 ? 1 : -1;
+            a.x -= overlapX/2 * sign;
+            b.x += overlapX/2 * sign;
+            [a.vx, b.vx] = [b.vx, a.vx];
+          } else {
+            const sign = dy >= 0 ? 1 : -1;
+            a.y -= overlapY/2 * sign;
+            b.y += overlapY/2 * sign;
+            [a.vy, b.vy] = [b.vy, a.vy];
+          }
+        }
+      }
+    }
+  }
+
+  function applyT(s){
+    if(s.el.open){
+      // center the open bubble using its current rendered size
+      const cw = list.clientWidth, ch = list.clientHeight;
+      const w = s.el.offsetWidth, h = s.el.offsetHeight;
+      const tx = Math.max(0, (cw - w) / 2);
+      const ty = Math.max(0, (ch - h) / 2);
+      s.el.style.transform = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px)`;
+    } else {
+      s.el.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`;
+    }
+  }
+
+  function measureAndPlace(){
+    items.forEach(el => { el.style.position = 'static'; el.style.transform = ''; });
+    const sizes = items.map(el => {
+      const r = el.getBoundingClientRect();
+      return {w: r.width, h: r.height};
+    });
+    items.forEach(el => { el.style.position = 'absolute'; });
+    const cw = list.clientWidth, ch = list.clientHeight;
+    state = items.map((el, i) => {
+      const w = sizes[i].w, h = sizes[i].h;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = .25 + Math.random() * .28;
+      return {
+        el, w, h,
+        x: Math.random() * Math.max(20, cw - w),
+        y: Math.random() * Math.max(20, ch - h),
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed
+      };
+    });
+    for(let pass=0; pass<8; pass++) resolveCollisions();
+    state.forEach(applyT);
+  }
+
+  let lastTime = performance.now();
+  function tick(now){
+    const dt = Math.min(32, now - lastTime) / 16.67;
+    lastTime = now;
+    if(document.body.dataset.motion === '0'){
+      raf = requestAnimationFrame(tick);
+      return;
+    }
+    const cw = list.clientWidth, ch = list.clientHeight;
+    state.forEach(s => {
+      if(s.el.open) return;
+      s.x += s.vx * dt;
+      s.y += s.vy * dt;
+      if(s.x < 0){ s.x = 0; s.vx = Math.abs(s.vx); }
+      if(s.y < 0){ s.y = 0; s.vy = Math.abs(s.vy); }
+      if(s.x + s.w > cw){ s.x = cw - s.w; s.vx = -Math.abs(s.vx); }
+      if(s.y + s.h > ch){ s.y = ch - s.h; s.vy = -Math.abs(s.vy); }
+    });
+    resolveCollisions();
+    state.forEach(applyT);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function start(){
+    measureAndPlace();
+    cancelAnimationFrame(raf);
+    lastTime = performance.now();
+    raf = requestAnimationFrame(tick);
+  }
+
+  // toggle: close siblings on open
+  items.forEach(el => {
+    el.addEventListener('toggle', () => {
+      if(el.open){
+        items.forEach(o => { if(o !== el) o.open = false; });
+      }
+    });
+  });
+
+  let resizeTimer = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(start, 150);
+  });
+
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(start);
+  } else {
+    setTimeout(start, 250);
+  }
+})();
+</script>
+</body>
+</html>

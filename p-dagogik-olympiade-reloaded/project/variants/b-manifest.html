@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Pädagogik-Olympiade 2027 — Manifest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efe7d6;
+    --paper-2:#e6dcc6;
+    --ink:#181612;
+    --ink-2:#2a2520;
+    --rule:#1e1a16;
+    --terra:#b8482b;
+    --olive:#5c5e2a;
+    --cream:#f4ecdb;
+    --muted:#6a6055;
+    --ease:cubic-bezier(.22,.7,.25,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.5;overflow-x:hidden}
+  body{background-image:radial-gradient(rgba(24,22,18,.06) 1px,transparent 1px);background-size:4px 4px}
+  .serif{font-family:'EB Garamond',serif}
+  .mono{font-family:'Space Mono','JetBrains Mono',monospace}
+  a{color:inherit}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 56px;position:relative}
+
+  /* ── NAV ──────────────────────────────────── */
+  nav.top{position:sticky;top:0;z-index:30;background:var(--ink);color:var(--cream);border-bottom:1px solid var(--ink)}
+  nav.top .row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:40px;padding:14px 56px;max-width:1240px;margin:0 auto}
+  nav.top .logo{font-family:'EB Garamond',serif;font-size:22px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  nav.top .logo::before{content:"";width:8px;height:8px;background:var(--terra);display:inline-block}
+  nav.top .links{display:flex;gap:30px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  nav.top .links a{text-decoration:none;opacity:.65;transition:opacity .2s}
+  nav.top .links a:hover{opacity:1;color:#f0c97a}
+  nav.top .cta{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:10px 16px;background:var(--terra);color:var(--cream);text-decoration:none;border:1px solid var(--terra);transition:background .2s,color .2s}
+  nav.top .cta:hover{background:var(--cream);color:var(--ink)}
+
+  /* ── HERO ─────────────────────────────────── */
+  .hero{padding:60px 0 0;position:relative;border-bottom:1px solid var(--rule)}
+  .hero .topbar{display:grid;grid-template-columns:repeat(4,1fr);font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-2);padding-bottom:24px;border-bottom:1px solid var(--rule);margin-bottom:48px}
+  .hero .topbar > div{padding-right:24px}
+  .hero .topbar b{font-family:'EB Garamond',serif;font-weight:500;display:block;color:var(--ink);font-size:18px;letter-spacing:-.01em;text-transform:none;margin-top:6px}
+  .hero h1{font-family:'EB Garamond',serif;font-weight:500;font-size:clamp(80px,15vw,232px);line-height:.84;letter-spacing:-.045em;margin-bottom:0}
+  .hero h1 em{font-style:italic;color:var(--terra)}
+  .hero h1 .black{display:inline-block;background:var(--ink);color:var(--paper);padding:0 .12em;transform:translateY(-.02em)}
+  .hero h1 .strike{text-decoration:line-through;text-decoration-thickness:.05em;text-decoration-color:var(--terra);opacity:.5}
+  .hero .undertext{margin-top:48px;display:grid;grid-template-columns:1fr 1.6fr;gap:60px;padding:48px 0 80px;border-top:1px solid var(--rule)}
+  .hero .undertext .left{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-2);line-height:1.7}
+  .hero .undertext .left b{display:block;font-family:'EB Garamond',serif;font-style:italic;font-size:22px;letter-spacing:-.01em;color:var(--ink);text-transform:none;margin-bottom:14px;font-weight:500}
+  .hero .undertext p{font-family:'EB Garamond',serif;font-size:clamp(24px,2.6vw,38px);line-height:1.25;letter-spacing:-.01em;color:var(--ink);max-width:760px}
+  .hero .undertext p em{font-style:italic;color:var(--terra)}
+  .hero .undertext p .hl{background:#f0c97a;padding:0 .12em}
+
+  /* fluid running text strip */
+  .hero .ticker{border-top:1px solid var(--rule);background:var(--ink);color:var(--cream);padding:18px 0;overflow:hidden;white-space:nowrap}
+  .hero .ticker .track{display:inline-flex;gap:48px;font-family:'EB Garamond',serif;font-style:italic;font-size:34px;animation:tick 36s linear infinite}
+  .hero .ticker .track span{display:inline-flex;align-items:center;gap:48px}
+  .hero .ticker .track i{color:var(--terra);font-style:normal}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ── SECTIONS ─────────────────────────────── */
+  section.s{padding:120px 0;border-bottom:1px solid var(--rule);position:relative}
+  .secnum{position:absolute;top:32px;left:56px;font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-2)}
+  .secnum b{font-family:'EB Garamond',serif;font-weight:500;font-size:34px;color:var(--ink);text-transform:none;letter-spacing:-.01em;display:block}
+  .seclabel{font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--terra);margin-bottom:24px}
+  h2.bighead{font-family:'EB Garamond',serif;font-weight:500;font-size:clamp(56px,8vw,124px);line-height:.92;letter-spacing:-.03em;margin-bottom:36px}
+  h2.bighead em{font-style:italic;color:var(--terra)}
+  .deck{font-family:'EB Garamond',serif;font-size:24px;line-height:1.35;letter-spacing:-.005em;color:var(--ink-2);max-width:720px;margin-bottom:72px}
+
+  /* ── NEU ──────────────────────────────────── */
+  .neu .grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  .neu .cell{padding:48px 36px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;background:var(--paper);transition:background .3s var(--ease)}
+  .neu .cell:hover{background:var(--paper-2)}
+  .neu .cell .n{position:absolute;top:24px;right:32px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--muted)}
+  .neu .cell .kicker{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:18px}
+  .neu .cell h3{font-family:'EB Garamond',serif;font-size:38px;line-height:1.05;letter-spacing:-.015em;font-weight:500;margin-bottom:14px}
+  .neu .cell h3 em{font-style:italic;color:var(--terra)}
+  .neu .cell p{color:var(--ink-2);font-size:15px;max-width:300px}
+  .neu .cell .meta{margin-top:32px;font-family:'Space Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--ink)}
+  .neu .cell .meta::before{content:"→ ";color:var(--terra)}
+
+  /* ── THEMA — manifest ─────────────────────── */
+  .thema{background:var(--ink);color:var(--cream);border-bottom:1px solid var(--ink);background-image:none}
+  .thema .secnum,.thema .secnum b{color:var(--cream)}
+  .thema .seclabel{color:#f0c97a}
+  .thema h2.bighead{color:var(--cream)}
+  .thema h2.bighead em{color:#f0c97a}
+  .thema .deck{color:rgba(244,236,219,.7)}
+  .thema .equation{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch;margin-top:40px;border-top:1px solid rgba(244,236,219,.18);border-bottom:1px solid rgba(244,236,219,.18)}
+  .thema .equation .term{padding:48px 36px;display:flex;flex-direction:column;justify-content:center;min-height:280px}
+  .thema .equation .term .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#f0c97a;margin-bottom:18px}
+  .thema .equation .term .v{font-family:'EB Garamond',serif;font-size:54px;line-height:1.02;letter-spacing:-.02em;font-weight:500}
+  .thema .equation .term .v em{font-style:italic;color:#f0c97a}
+  .thema .equation .term p{margin-top:18px;color:rgba(244,236,219,.7);font-size:15px;max-width:280px}
+  .thema .equation .op{display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:80px;font-style:italic;color:#f0c97a;padding:0 24px}
+  .thema .pull{margin-top:80px;font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(36px,4.5vw,68px);line-height:1.1;letter-spacing:-.015em;max-width:1000px}
+  .thema .pull .hl{background:var(--terra);color:var(--cream);padding:0 .12em;font-style:normal}
+  .thema .pull .who{display:block;margin-top:28px;font-family:'Space Mono',monospace;font-style:normal;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,236,219,.5)}
+
+  /* ── DREI FRAGEN ──────────────────────────── */
+  .fragen .row{display:grid;grid-template-columns:140px 1fr;align-items:start;border-top:1px solid var(--rule);padding:48px 0;gap:48px;transition:background .3s var(--ease)}
+  .fragen .row:hover{background:var(--paper-2)}
+  .fragen .row:last-of-type{border-bottom:1px solid var(--rule)}
+  .fragen .row .n{font-family:'EB Garamond',serif;font-size:96px;line-height:.9;font-weight:500;font-style:italic;color:var(--terra)}
+  .fragen .row .body{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start}
+  .fragen .row h3{font-family:'EB Garamond',serif;font-weight:500;font-size:clamp(38px,4.4vw,64px);line-height:1.02;letter-spacing:-.02em}
+  .fragen .row h3 em{font-style:italic;color:var(--terra)}
+  .fragen .row aside{font-family:'Space Mono',monospace;font-size:11px;line-height:1.7;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;border-left:1px solid var(--rule);padding-left:24px}
+  .fragen .row aside b{display:block;font-family:'EB Garamond',serif;font-size:18px;letter-spacing:-.005em;color:var(--ink);text-transform:none;font-weight:500;margin-bottom:8px;font-style:italic}
+  .fragen .row aside p{margin-top:14px;font-family:'Space Grotesk',sans-serif;font-size:13.5px;letter-spacing:0;text-transform:none;color:var(--ink-2);line-height:1.55}
+  .fragen .note{margin-top:40px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* ── WER ──────────────────────────────────── */
+  .wer .duo{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);border-radius:0;margin-top:40px}
+  .wer .lane{padding:64px 48px;border-right:1px solid var(--rule);position:relative;background:var(--paper-2)}
+  .wer .lane:last-child{border-right:none;background:var(--paper)}
+  .wer .lane .kicker{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
+  .wer .lane:nth-child(2) .kicker{color:var(--olive)}
+  .wer .lane .age{font-family:'EB Garamond',serif;font-weight:500;font-size:clamp(120px,16vw,224px);line-height:.86;letter-spacing:-.04em;margin:18px 0 24px}
+  .wer .lane .age em{font-style:italic;color:var(--terra)}
+  .wer .lane:nth-child(2) .age em{color:var(--olive)}
+  .wer .lane p{font-family:'EB Garamond',serif;font-size:22px;line-height:1.3;color:var(--ink-2);max-width:380px}
+  .wer .lane .stats{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:1px solid var(--rule);padding-top:24px}
+  .wer .lane .stats .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .wer .lane .stats .v{font-family:'EB Garamond',serif;font-size:38px;font-weight:500;letter-spacing:-.01em;margin-top:4px}
+
+  /* ── ABLAUF ──────────────────────────────── */
+  .ablauf .timeline{margin-top:60px;border-top:1px solid var(--rule)}
+  .ablauf .step{display:grid;grid-template-columns:200px 1fr 60px;gap:40px;align-items:start;padding:32px 0;border-bottom:1px solid var(--rule);transition:padding-left .25s var(--ease)}
+  .ablauf .step:hover{padding-left:24px}
+  .ablauf .step .date{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding-top:12px}
+  .ablauf .step .date b{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;display:block;font-size:26px;letter-spacing:-.005em;color:var(--ink);text-transform:none;margin-top:4px}
+  .ablauf .step h4{font-family:'EB Garamond',serif;font-weight:500;font-size:34px;letter-spacing:-.01em;line-height:1.1;margin-bottom:6px}
+  .ablauf .step h4 em{font-style:italic;color:var(--terra)}
+  .ablauf .step p{color:var(--ink-2);font-size:15px;max-width:560px}
+  .ablauf .step .ph{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted);text-align:right;padding-top:12px}
+
+  /* ── JURY ─────────────────────────────────── */
+  .jury .heads{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);margin-top:48px}
+  .jury .head{padding:36px 28px;border-right:1px solid var(--rule);background:var(--paper-2);min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+  .jury .head:last-child{border-right:none}
+  .jury .head .num{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--muted)}
+  .jury .head .name{font-family:'EB Garamond',serif;font-weight:500;font-size:30px;line-height:1.05;letter-spacing:-.01em}
+  .jury .head .name em{font-style:italic;color:var(--terra)}
+  .jury .head .role{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-top:10px}
+  .jury .footnote{margin-top:24px;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* ── PUBLIKATION ──────────────────────────── */
+  .pub{background:var(--cream)}
+  .pub .row{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+  .pub h2.bighead em{color:var(--olive)}
+  .pub .stamp{aspect-ratio:.74;background:var(--paper);border:1px solid var(--rule);position:relative;padding:48px 36px;display:flex;flex-direction:column;justify-content:space-between}
+  .pub .stamp::after{content:"";position:absolute;inset:14px;border:1px dashed rgba(24,22,18,.25);pointer-events:none}
+  .pub .stamp .stripe{position:absolute;top:0;left:0;right:0;height:42px;background:var(--ink);color:var(--cream);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+  .pub .stamp .title{margin-top:80px;font-family:'EB Garamond',serif;font-size:48px;line-height:1.02;letter-spacing:-.02em;font-weight:500}
+  .pub .stamp .title em{font-style:italic;color:var(--terra)}
+  .pub .stamp .foot{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+
+  /* ── EINREICHEN ───────────────────────────── */
+  .einreichen{background:var(--ink);color:var(--cream);background-image:none}
+  .einreichen .secnum,.einreichen .secnum b{color:var(--cream)}
+  .einreichen .seclabel{color:#f0c97a}
+  .einreichen h2.bighead{color:var(--cream)}
+  .einreichen h2.bighead em{color:#f0c97a}
+  .einreichen .deck{color:rgba(244,236,219,.72)}
+  .einreichen .reqs{margin-top:24px;border-top:1px solid rgba(244,236,219,.18);border-left:1px solid rgba(244,236,219,.18)}
+  .einreichen .req{display:grid;grid-template-columns:240px 1fr 1fr;gap:32px;padding:36px;border-right:1px solid rgba(244,236,219,.18);border-bottom:1px solid rgba(244,236,219,.18);align-items:start;transition:background .3s var(--ease)}
+  .einreichen .req:hover{background:rgba(244,236,219,.04)}
+  .einreichen .req .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#f0c97a;padding-top:6px}
+  .einreichen .req .v{font-family:'EB Garamond',serif;font-size:28px;letter-spacing:-.01em;line-height:1.1;font-weight:500}
+  .einreichen .req .v em{font-style:italic;color:#f0c97a}
+  .einreichen .req p{color:rgba(244,236,219,.65);font-size:14.5px}
+  .einreichen .mailcard{margin-top:48px;background:var(--terra);color:var(--cream);padding:56px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px}
+  .einreichen .mailcard h3{font-family:'EB Garamond',serif;font-weight:500;font-size:54px;line-height:1.05;letter-spacing:-.02em}
+  .einreichen .mailcard h3 em{font-style:italic}
+  .einreichen .mailcard a{font-family:'Space Mono',monospace;font-size:14px;text-decoration:none;background:var(--cream);color:var(--ink);padding:20px 28px;letter-spacing:.06em;text-transform:uppercase;transition:transform .25s var(--ease)}
+  .einreichen .mailcard a:hover{transform:translateY(-2px)}
+
+  /* ── FAQ ──────────────────────────────────── */
+  .faq details{border-top:1px solid var(--rule);padding:28px 0;cursor:pointer}
+  .faq details:last-of-type{border-bottom:1px solid var(--rule)}
+  .faq summary{font-family:'EB Garamond',serif;font-weight:500;font-size:28px;line-height:1.2;letter-spacing:-.01em;list-style:none;display:flex;justify-content:space-between;align-items:start;gap:24px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"[+]";font-family:'Space Mono',monospace;font-size:14px;color:var(--terra);transition:transform .3s var(--ease)}
+  .faq details[open] summary::after{content:"[−]"}
+  .faq details p{margin-top:14px;color:var(--ink-2);font-size:15px;max-width:780px}
+
+  /* ── FOOTER ───────────────────────────────── */
+  footer{background:var(--paper-2);padding:80px 56px 32px;border-top:1px solid var(--rule)}
+  footer .inner{max-width:1240px;margin:0 auto}
+  footer .word{font-family:'EB Garamond',serif;font-weight:500;font-size:clamp(96px,18vw,288px);line-height:.84;letter-spacing:-.045em;color:var(--ink)}
+  footer .word em{font-style:italic;color:var(--terra)}
+  footer .word .black{background:var(--ink);color:var(--paper);padding:0 .12em}
+  footer .meta{margin-top:80px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;border-top:1px solid var(--rule);padding-top:48px}
+  footer .meta h5{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  footer .meta p,footer .meta a{color:var(--ink-2);font-size:14px;line-height:1.6;text-decoration:none;display:block}
+  footer .meta a:hover{color:var(--terra)}
+  footer .bottom{margin-top:60px;padding-top:20px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* reveal */
+  [data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  [data-reveal].in{opacity:1;transform:none}
+
+  body.compact section.s{padding:80px 0}
+  body.still .ticker .track{animation:none}
+  body.still [data-reveal]{opacity:1;transform:none;transition:none}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="row">
+    <div class="logo">Pädagogik-Olympiade</div>
+    <div class="links">
+      <a href="#thema">Thema</a>
+      <a href="#fragen">Fragen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#jury">Jury</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="cta" href="#einreichen">Einreichen</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <div>Volume / Vol.<b>04 — 2027</b></div>
+      <div>Datum<b>19.02.2027</b></div>
+      <div>Ort<b>Universität Bielefeld</b></div>
+      <div>Thema<b>(Un-)Gerechtigkeit</b></div>
+    </div>
+    <h1>
+      <em>Ein</em> Tag,<br>
+      <span class="black">eine Frage</span>:<br>
+      Was ist <em>gerecht</em>?
+    </h1>
+    <div class="undertext">
+      <div class="left">Manifest 2027<b>Was ist neu.</b>Drei Fragen. Zwei Bahnen. Eine Olympiade. Ein Stream. Eine Publikation. Eine Universität, die zuhört.</div>
+      <p>Vier Jahre lang haben wir gefragt, <em>wie</em> ihr lernen wollt. 2027 fragen wir nach dem, <em>was im Weg steht</em>: <span class="hl">Ungerechtigkeit</span> in Schule, Familie, Stadt, Sprache, Körper, Geld.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <span>Klassenfrage <i>·</i> Sprachfrage <i>·</i> Körperfrage <i>·</i> Stadtfrage <i>·</i> Geldfrage <i>·</i> Herkunftsfrage <i>·</i> Genderfrage <i>·</i> Machtfrage</span>
+      <span>Klassenfrage <i>·</i> Sprachfrage <i>·</i> Körperfrage <i>·</i> Stadtfrage <i>·</i> Geldfrage <i>·</i> Herkunftsfrage <i>·</i> Genderfrage <i>·</i> Machtfrage</span>
+    </div>
+  </div>
+</header>
+
+<!-- NEU -->
+<section class="s neu" id="neu">
+  <div class="secnum">Kap. <b>01</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Was neu ist</div>
+    <h2 class="bighead" data-reveal>Drei <em>Sprünge</em><br>für 2027.</h2>
+    <div class="grid" data-reveal>
+      <div class="cell">
+        <div class="n">01 / 03</div>
+        <div class="kicker">Bahnen</div>
+        <h3>Zwei <em>Altersbahnen</em>.</h3>
+        <p>Wir öffnen die Olympiade für 9–11 und 12–13. Eigene Aufgabenrahmen, getrennte Bewertung, gleiche Bühne.</p>
+        <div class="meta">9–13 Jahre · Klassen 3–9</div>
+      </div>
+      <div class="cell">
+        <div class="n">02 / 03</div>
+        <div class="kicker">Aufgabe</div>
+        <h3>Drei <em>scharfe</em> Fragen.</h3>
+        <p>Wir wechseln vom offenen Motto zu drei zugespitzten Fragen. Ihr wählt — und antwortet in eurem Format.</p>
+        <div class="meta">1, 2 oder alle 3</div>
+      </div>
+      <div class="cell">
+        <div class="n">03 / 03</div>
+        <div class="kicker">Reichweite</div>
+        <h3>Live im <em>Stream</em>.</h3>
+        <p>Die große Diskussion am 19.02. wird übertragen und aufgezeichnet. Schulen, Eltern, Freund:innen können dabei sein.</p>
+        <div class="meta">Details folgen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THEMA -->
+<section class="s thema" id="thema">
+  <div class="secnum">Kap. <b>02</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Das Thema</div>
+    <h2 class="bighead" data-reveal>(Un)gleich <em>≠</em><br>(un)gerecht.</h2>
+    <p class="deck" data-reveal>Eine kleine begriffliche Werkstatt, weil fast jede Debatte hier durcheinandergerät. Wer Schule fairer machen will, sollte zuerst wissen, was er meint.</p>
+
+    <div class="equation" data-reveal>
+      <div class="term">
+        <div class="k">Term A</div>
+        <div class="v">Gleichheit</div>
+        <p>Alle bekommen <em>dasselbe</em>. Eine Stunde, ein Test, ein Maßstab. Klingt fair — ist es selten.</p>
+      </div>
+      <div class="op">≠</div>
+      <div class="term">
+        <div class="k">Term B</div>
+        <div class="v">Gerechtigkeit</div>
+        <p>Alle bekommen, <em>was sie brauchen</em>. Hinschauen ist Voraussetzung, nicht Bonus.</p>
+      </div>
+      <div class="op">⇒</div>
+      <div class="term">
+        <div class="k">Frage</div>
+        <div class="v">Was <em>wollt</em> ihr?</div>
+        <p>Manifest hin oder her: Die Antwort liegt nicht im Lehrbuch. Sie liegt bei euch.</p>
+      </div>
+    </div>
+
+    <p class="pull" data-reveal>
+      <span class="hl">Bildung trennt</span>, bevor sie verbindet.<br>Eure Aufgabe: das umdrehen.
+      <span class="who">— Im Geist von Bourdieu · Hurrelmann · Bauer</span>
+    </p>
+  </div>
+</section>
+
+<!-- FRAGEN -->
+<section class="s fragen" id="fragen">
+  <div class="secnum">Kap. <b>03</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Eure Aufgabe</div>
+    <h2 class="bighead" data-reveal>Drei <em>Fragen</em>.<br>Eine reicht.</h2>
+    <p class="deck" data-reveal>Wählt eine, zwei oder alle drei. Format frei — Text, Video, Audio, Spiel, Bild, Performance, Code. Wir wollen Position, nicht Kompromiss.</p>
+
+    <div class="row" data-reveal>
+      <div class="n">01.</div>
+      <div class="body">
+        <h3>Wo erlebst <em>du</em> Ungerechtigkeit — und wer profitiert davon?</h3>
+        <aside><b>Beobachten</b>Nicht das, was im Feed steht. Was du selbst siehst — Klasse, Pause, Zuhause, Stadt.<p>Tipp: Konkrete Szene, klare Sprache, eine eigene These.</p></aside>
+      </div>
+    </div>
+    <div class="row" data-reveal>
+      <div class="n">02.</div>
+      <div class="body">
+        <h3>Was wäre <em>fair</em>, und wer entscheidet das eigentlich?</h3>
+        <aside><b>Vorschlagen</b>Wenn du eine Sache ändern dürftest, weil sie ungerecht ist: welche? Und wer hätte das Recht zu entscheiden?<p>Tipp: Eine Reform, eine Stimme, ein Argument.</p></aside>
+      </div>
+    </div>
+    <div class="row" data-reveal>
+      <div class="n">03.</div>
+      <div class="body">
+        <h3>Kann <em>Schule</em> überhaupt gerecht sein?</h3>
+        <aside><b>Streiten</b>Manche sagen: nein, sie reproduziert. Andere: ja, sie ist der einzige Ort, an dem es klappen könnte.<p>Tipp: Stellung beziehen — und begründen.</p></aside>
+      </div>
+    </div>
+    <p class="note">↳ Diese drei Fragen sind Platzhalter und werden mit dem finalen Wortlaut ersetzt.</p>
+  </div>
+</section>
+
+<!-- WER -->
+<section class="s wer" id="wer">
+  <div class="secnum">Kap. <b>04</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Wer mitmacht</div>
+    <h2 class="bighead" data-reveal>Zwei <em>Bahnen</em>,<br>ein Tag.</h2>
+    <div class="duo">
+      <div class="lane" data-reveal>
+        <div class="kicker">Bahn 1 — jünger</div>
+        <div class="age"><em>9</em>—<em>11</em></div>
+        <p>Klassen 3–6. Einzeln, im Team, als ganze Klasse. Wir wählen eine kuratierte Auswahl aus und laden nach Bielefeld ein.</p>
+        <div class="stats">
+          <div><div class="k">Plätze vor Ort</div><div class="v">40</div></div>
+          <div><div class="k">Einreichungen</div><div class="v">offen</div></div>
+        </div>
+      </div>
+      <div class="lane" data-reveal>
+        <div class="kicker">Bahn 2 — älter</div>
+        <div class="age"><em>12</em>—<em>13</em></div>
+        <p>Klassen 7–9. Genauso offen — wir erwarten aber eine etwas tiefere Auseinandersetzung mit den Fragen.</p>
+        <div class="stats">
+          <div><div class="k">Plätze vor Ort</div><div class="v">40</div></div>
+          <div><div class="k">Einreichungen</div><div class="v">offen</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="s ablauf" id="ablauf">
+  <div class="secnum">Kap. <b>05</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Ablauf</div>
+    <h2 class="bighead" data-reveal>Vom Start <em>bis</em> nach<br>Bielefeld.</h2>
+    <div class="timeline" data-reveal>
+      <div class="step">
+        <div class="date">Phase 01<b>Apr — Sep 2026</b></div>
+        <div><h4>Olympiade <em>öffnet</em>.</h4><p>Auftakt-Material, Begleithefte für Lehrkräfte, erste Werkstätten.</p></div>
+        <div class="ph">01/06</div>
+      </div>
+      <div class="step">
+        <div class="date">Phase 02<b>Okt — Dez 2026</b></div>
+        <div><h4>Beiträge <em>entstehen</em>.</h4><p>Allein, im Team, im Kurs. Wir sind auf Insta erreichbar.</p></div>
+        <div class="ph">02/06</div>
+      </div>
+      <div class="step">
+        <div class="date">Phase 03<b>10. Januar 2027</b></div>
+        <div><h4>Einsendeschluss.</h4><p>Per Mail oder Formular. Bestätigung innerhalb von 48 h.</p></div>
+        <div class="ph">03/06</div>
+      </div>
+      <div class="step">
+        <div class="date">Phase 04<b>Ende Jan 2027</b></div>
+        <div><h4>Jury <em>entscheidet</em>.</h4><p>Wissenschaftler:innen, Lehrkräfte, Schüler:innen. Offizielle Einladungen gehen raus.</p></div>
+        <div class="ph">04/06</div>
+      </div>
+      <div class="step">
+        <div class="date">Phase 05<b>19. Februar 2027</b></div>
+        <div><h4>Olympiade <em>in</em> Bielefeld.</h4><p>Vorstellung, Preisverleihung, große Diskussion — live gestreamt.</p></div>
+        <div class="ph">05/06</div>
+      </div>
+      <div class="step">
+        <div class="date">Phase 06<b>Frühjahr 2027</b></div>
+        <div><h4>Publikation in <em>PÄDAGOGIK</em>.</h4><p>Die ersten Plätze werden in der Fachzeitschrift gewürdigt.</p></div>
+        <div class="ph">06/06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JURY -->
+<section class="s jury" id="jury">
+  <div class="secnum">Kap. <b>06</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Die Jury</div>
+    <h2 class="bighead" data-reveal>Liest. Hört. Schaut. <em>Diskutiert</em>.</h2>
+    <p class="deck" data-reveal>Eine Jury aus Wissenschaftler:innen, Lehrkräften und Schüler:innen begutachtet jeden Beitrag. Keine Punkte, keine Algorithmen — ehrliche, begründete Urteile.</p>
+    <div class="heads" data-reveal>
+      <div class="head"><div class="num">J/01</div><div><div class="name">Prof. Dr.<br>Ullrich <em>Bauer</em></div><div class="role">Leitung · Uni Bielefeld</div></div></div>
+      <div class="head"><div class="num">J/02</div><div><div class="name">Prof. Dr.<br>Klaus <em>Hurrelmann</em></div><div class="role">Sozialisationsforschung</div></div></div>
+      <div class="head"><div class="num">J/03</div><div><div class="name">N. N.<br><em>Lehrkraft</em></div><div class="role">Pädagogik · Gymnasium</div></div></div>
+      <div class="head"><div class="num">J/04</div><div><div class="name">N. N.<br><em>Schüler-Jury</em></div><div class="role">Klasse 8</div></div></div>
+    </div>
+    <div class="footnote">↳ + weitere Wissenschaftler:innen — vollständige Liste folgt im Herbst 2026</div>
+  </div>
+</section>
+
+<!-- PUBLIKATION -->
+<section class="s pub" id="publikation">
+  <div class="secnum">Kap. <b>07</b></div>
+  <div class="wrap">
+    <div class="row">
+      <div data-reveal>
+        <div class="seclabel">Publikation</div>
+        <h2 class="bighead">Eure Stimme<br><em>im</em> Diskurs.</h2>
+        <p class="deck">Die Beiträge der ersten Plätze werden in der Zeitschrift <b>PÄDAGOGIK</b> gewürdigt — eine der wichtigsten Fachzeitschriften für Lehrer:innen. Mit Foto, Auszug, Begleittext.</p>
+      </div>
+      <div class="stamp" data-reveal>
+        <div class="stripe"><span>Pädagogik · 03/2027</span><span>79. Jg.</span></div>
+        <div class="title">(Un-)<em>Gerecht.</em><br>Was Schüler:innen<br>jetzt fordern.</div>
+        <div class="foot"><span>Pädagogik-Olympiade 2027</span><span>S. 24–38</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EINREICHEN -->
+<section class="s einreichen" id="einreichen">
+  <div class="secnum">Kap. <b>08</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>Einreichen</div>
+    <h2 class="bighead" data-reveal>Bereit? <em>Los</em>.</h2>
+    <p class="deck" data-reveal>Schickt euren Beitrag per Mail. Wir bestätigen jede Einsendung innerhalb von 48 Stunden.</p>
+    <div class="reqs" data-reveal>
+      <div class="req"><div class="k">01 · Wer</div><div class="v">Einzeln, im <em>Team</em><br>oder als Klasse</div><p>Bitte pro Gruppe einen Gesamtbeitrag. Mehrere Teams einer Schule sind willkommen.</p></div>
+      <div class="req"><div class="k">02 · Was</div><div class="v">Beitrag zu 1, 2 <em>oder</em> 3 Fragen</div><p>Format frei: Text, Video, Audio, Spiel, Bild, Performance, Code. Ungewöhnliches gern.</p></div>
+      <div class="req"><div class="k">03 · Wie</div><div class="v">Direkt bis 500 <em>MB</em></div><p>Größer? transfernow.com nutzen, Link in die Mail packen.</p></div>
+      <div class="req"><div class="k">04 · Beilegen</div><div class="v">Kontakt, Alter, Schule, <em>Klasse</em></div><p>Damit wir euch zuordnen, antworten und einladen können.</p></div>
+      <div class="req"><div class="k">05 · Bewertet wird</div><div class="v">Kreativität, Tiefe, <em>Position</em></div><p>Originell, fachlich begründet, klare Haltung. Schönheit zählt — Ehrlichkeit mehr.</p></div>
+      <div class="req"><div class="k">06 · Deadline</div><div class="v">10. Januar <em>2027</em></div><p>23:59 Uhr. Späte Einsendungen nur in Ausnahmen — vorher fragen.</p></div>
+    </div>
+    <div class="mailcard" data-reveal>
+      <h3>Schreibt uns. <em>Jetzt.</em></h3>
+      <a href="mailto:hallo@paedagogik-olympiade.de?subject=Einreichung%20P%C3%A4dagogik-Olympiade%202027">hallo@paedagogik-olympiade.de →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s faq" id="faq">
+  <div class="secnum">Kap. <b>09</b></div>
+  <div class="wrap">
+    <div class="seclabel" data-reveal>FAQ</div>
+    <h2 class="bighead" data-reveal>Was <em>oft</em> gefragt wird.</h2>
+    <div data-reveal style="margin-top:48px">
+      <details><summary>Wer kann mitmachen?</summary><p>Alle Schüler:innen zwischen 9 und 13 Jahren. Einzeln, im Team oder als ganzer Kurs. Keine Beschränkungen hinsichtlich Schulform.</p></details>
+      <details><summary>Müssen wir alle drei Fragen beantworten?</summary><p>Nein. Eine Frage reicht — wenn ihr richtig in die Tiefe geht. Mehr ist möglich, aber nicht Pflicht.</p></details>
+      <details><summary>Welche Formate sind erlaubt?</summary><p>Alle: Video, Podcast, Essay, Gedicht, Brettspiel, App, Skulptur, Performance, Comic, Insta-Reel … Hauptsache, eure Antwort wird klar.</p></details>
+      <details><summary>Können Lehrkräfte mithelfen?</summary><p>Klar. Lehrkräfte dürfen begleiten, beraten, motivieren — sie sollten aber nicht selbst die Antwort sein.</p></details>
+      <details><summary>Wie groß darf die Datei sein?</summary><p>Per Mail bis 500 MB. Größer? Bei transfernow.com hochladen und den Link in eure Mail packen.</p></details>
+      <details><summary>Was bekommen die Gewinner:innen?</summary><p>Eine Preisverleihung in Bielefeld, handsignierte Bücher, Schulbesuche von Wissenschaftler:innen und eine Veröffentlichung in der Zeitschrift PÄDAGOGIK.</p></details>
+      <details><summary>Was kostet die Teilnahme?</summary><p>Nichts. Die Olympiade ist kostenfrei. Bei Bedarf unterstützen wir bei Anreise und Unterkunft.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div class="word"><em>(Un-)</em><span class="black">gerecht</span></div>
+    <div class="meta">
+      <div>
+        <h5>Veranstalter</h5>
+        <p>Prof. Dr. Ullrich Bauer<br>Universität Bielefeld<br>Fakultät für Erziehungswissenschaft<br>AG Sozialisation (ZPI)<br>Konsequenz 41A, Z-Gebäude<br>33501 Bielefeld</p>
+      </div>
+      <div><h5>Kontakt</h5><a href="mailto:hallo@paedagogik-olympiade.de">hallo@paedagogik-olympiade.de</a></div>
+      <div><h5>Sozial</h5><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+      <div><h5>Rechtliches</h5><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+    </div>
+    <div class="bottom"><span>© 2027 · Pädagogik-Olympiade</span><span>Vol. 04 · 19.02.2027 · Bielefeld</span></div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

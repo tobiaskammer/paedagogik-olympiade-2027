@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Impressum & Datenschutz · Pädagogik-Olympiade 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand: #F1EAD9;
+  --cream: #F8F2E4;
+  --paper: #FAF6EC;
+  --ink: #221d14;
+  --ink-2: #4a3e2c;
+  --terra: #C46A4A;
+  --terra-deep: #9c4c33;
+  --olive-deep: #5d6231;
+  --rule: rgba(34,29,20,.18);
+  --rule-soft: rgba(34,29,20,.09);
+  --serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--sand);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{overflow-x:hidden}
+::selection{background:var(--terra);color:var(--cream)}
+a{color:inherit}
+
+/* Subtle fluid background — slower and softer than main page */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  filter:blur(48px) saturate(110%);opacity:.55}
+.bg span{position:absolute;border-radius:50%;mix-blend-mode:multiply;
+  animation:drift linear infinite;will-change:transform}
+.bg .b1{width:48vw;height:48vw;left:-14vw;top:-10vw;background:#d68a64;
+  animation-duration:80s}
+.bg .b2{width:42vw;height:42vw;right:-12vw;top:30vh;background:#a4a667;
+  animation-duration:96s;animation-direction:reverse}
+.bg .b3{width:38vw;height:38vw;left:20vw;top:120vh;background:#e8b27a;
+  animation-duration:110s}
+.bg .b4{width:34vw;height:34vw;right:0vw;top:200vh;background:#9da361;
+  animation-duration:104s;animation-direction:reverse}
+@keyframes drift{
+  0%   {transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  25%  {transform:translate3d(5vw,-3vh,0) rotate(90deg) scale(1.06)}
+  50%  {transform:translate3d(-2vw,5vh,0) rotate(180deg) scale(.94)}
+  75%  {transform:translate3d(-4vw,-2vh,0) rotate(270deg) scale(1.04)}
+  100% {transform:translate3d(0,0,0) rotate(360deg) scale(1)}
+}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .12 0 0 0 0 .1 0 0 0 0 .07 0 0 0 .25 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+main{position:relative;z-index:2}
+.wrap{max-width:780px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+
+/* Topbar — matches main page */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px clamp(20px,4vw,40px) 18px;
+  font-family:var(--sans);font-size:13px;letter-spacing:.02em;
+  background:linear-gradient(to bottom, rgba(241,234,217,.55) 0%, rgba(241,234,217,.42) 65%, rgba(241,234,217,0) 100%);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  -webkit-mask-image:linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-image:linear-gradient(to bottom, #000 62%, transparent 100%)}
+.topbar .mark{font-family:var(--serif);font-style:italic;font-size:18px;
+  font-weight:400;color:var(--ink);text-decoration:none}
+.topbar .back{display:inline-flex;align-items:center;gap:8px;
+  color:var(--ink);text-decoration:none;font-weight:500;opacity:.8}
+.topbar .back:hover{opacity:1;color:var(--terra-deep)}
+.topbar .back::before{content:"←";font-family:var(--serif);font-style:italic;font-size:16px}
+
+/* HERO of Impressum page */
+.intro{padding:160px 0 56px}
+.intro .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--terra-deep);font-weight:600;margin-bottom:24px;
+  display:inline-flex;align-items:center;gap:14px}
+.intro .eyebrow::before{content:"";width:46px;height:1px;background:var(--terra-deep)}
+.intro h1{font-family:var(--serif);font-weight:300;
+  font-size:clamp(38px,5.5vw,68px);line-height:1.02;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:16px;text-wrap:balance}
+.intro h1 em{font-style:italic;color:var(--terra-deep);font-weight:400}
+.intro p.lede{max-width:560px;font-family:var(--serif);font-size:18px;
+  line-height:1.55;color:var(--ink-2)}
+
+/* Sections */
+.section{padding:56px 0;border-top:1px solid var(--rule-soft)}
+.section h2{font-family:var(--serif);font-weight:300;
+  font-size:clamp(26px,3vw,38px);line-height:1.1;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:32px;text-wrap:balance}
+.section h2 em{font-style:italic;color:var(--terra-deep);font-weight:400}
+.section h3{font-family:var(--serif);font-weight:400;font-size:20px;
+  line-height:1.3;margin:32px 0 12px;color:var(--ink);letter-spacing:-.005em}
+.section h4{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terra-deep);font-weight:600;
+  margin:32px 0 10px}
+.section p, .section address{font-family:var(--serif);font-size:16px;line-height:1.65;
+  color:var(--ink-2);margin-bottom:14px;text-wrap:pretty;font-style:normal}
+.section p strong{color:var(--ink);font-weight:600}
+.section a{color:var(--terra-deep);text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:3px;
+  text-decoration-color:rgba(156,76,51,.4);transition:text-decoration-color .2s, color .2s}
+.section a:hover{color:var(--terra);text-decoration-color:var(--terra)}
+.section address{font-style:normal;line-height:1.65;font-family:var(--serif);font-size:16px;
+  color:var(--ink-2);
+  padding:18px 22px;background:var(--paper);border:1px solid var(--rule-soft);
+  border-radius:8px;display:inline-block}
+.shout{font-family:var(--sans);font-size:11.5px;line-height:1.65;
+  letter-spacing:.04em;color:var(--ink-2);
+  padding:18px 22px;background:rgba(196,106,74,.07);
+  border-left:3px solid var(--terra);border-radius:0 6px 6px 0;
+  margin:18px 0}
+
+/* footer matches main */
+footer{background:var(--ink);color:rgba(248,242,228,.7);padding:64px 0 32px;
+  font-family:var(--sans);font-size:13px;line-height:1.6;margin-top:64px;
+  position:relative;z-index:2}
+footer .wrap{max-width:1240px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+  padding-bottom:40px;border-bottom:1px solid rgba(248,242,228,.15)}
+.foot-grid .mark{font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:24px;color:var(--cream);line-height:1.1;letter-spacing:-.008em}
+.foot-grid .mark span{display:block;font-size:13px;font-family:var(--sans);
+  letter-spacing:.16em;text-transform:uppercase;font-style:normal;
+  color:var(--terra);margin-top:8px;font-weight:600}
+.foot-col h5{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:14px}
+.foot-col a{color:rgba(248,242,228,.75);text-decoration:none;display:block;
+  margin-bottom:8px}
+.foot-col a:hover{color:var(--cream)}
+.foot-bottom{padding-top:20px;display:flex;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;font-size:12px;color:rgba(248,242,228,.5)}
+@media (max-width:880px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="mark" href="index.html">Pädagogik-Olympiade <em>’27</em></a>
+  <a class="back" href="index.html">Zurück</a>
+</header>
+
+<main>
+
+<section class="intro wrap">
+  <div class="eyebrow">Rechtliches</div>
+  <h1>Impressum &amp; <em>Datenschutz</em>.</h1>
+  <p class="lede">Verantwortlich für die Pädagogik-Olympiade 2027 sowie alle Informationen, die ihr auf dieser Seite findet.</p>
+</section>
+
+<!-- ─── ANBIETER / VERANTWORTLICH ─── -->
+<section class="section wrap">
+  <h2>Anbieter &amp; <em>verantwortliche Stelle</em></h2>
+
+  <address>
+    <strong>Prof. Dr. Ullrich Bauer</strong><br>
+    Universität Bielefeld<br>
+    Fakultät für Erziehungswissenschaft<br>
+    AG Sozialisation<br>
+    Zentrum für Prävention und Intervention im Kindes- und Jugendalter (ZPI&nbsp;/&nbsp;CPI)<br>
+    Postfach 10 01 31<br>
+    33501 Bielefeld
+  </address>
+
+  <h4>Kontakt</h4>
+  <p>E-Mail: <a href="mailto:hallo@paedagogik-olympiade.de">hallo@paedagogik-olympiade.de</a></p>
+</section>
+
+<!-- ─── DATENSCHUTZ ─── -->
+<section class="section wrap" id="datenschutz">
+  <h2>Datenschutz auf einen <em>Blick</em></h2>
+
+  <h3>Allgemeine Hinweise</h3>
+  <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit euren personenbezogenen Daten passiert, wenn ihr diese Website besucht. Personenbezogene Daten sind alle Daten, mit denen ihr persönlich identifiziert werden könnt. Ausführliche Informationen zum Thema entnehmt ihr der unter diesem Text aufgeführten Datenschutzerklärung.</p>
+
+  <h3>Datenerfassung auf dieser Website</h3>
+  <p><strong>Wer ist verantwortlich für die Datenerfassung?</strong> Die Datenverarbeitung erfolgt durch den Websitebetreiber. Kontaktdaten siehe oben.</p>
+  <p><strong>Wie erfassen wir eure Daten?</strong> Eure Daten werden zum einen dadurch erhoben, dass ihr uns diese mitteilt (z.&nbsp;B. in einem Kontaktformular). Andere Daten werden automatisch oder nach eurer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst — vor allem technische Daten (Browser, Betriebssystem, Uhrzeit).</p>
+  <p><strong>Wofür nutzen wir eure Daten?</strong> Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse des Nutzerverhaltens verwendet werden.</p>
+  <p><strong>Welche Rechte habt ihr?</strong> Ihr habt jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck eurer gespeicherten personenbezogenen Daten zu erhalten, sowie ein Recht auf Berichtigung oder Löschung. Eine erteilte Einwilligung könnt ihr jederzeit für die Zukunft widerrufen. Außerdem habt ihr ein Beschwerderecht bei der zuständigen Aufsichtsbehörde.</p>
+</section>
+
+<section class="section wrap">
+  <h2><em>Hosting</em></h2>
+  <p>Diese Website wird extern bei <strong>Hostinger</strong> gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v.&nbsp;a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten handeln, die über eine Website generiert werden.</p>
+  <p>Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Nutzer:innen (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Angebots (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Wir haben einen Auftragsverarbeitungsvertrag (AVV) geschlossen.</p>
+</section>
+
+<section class="section wrap">
+  <h2>Allgemeine Hinweise &amp; <em>Pflichtinformationen</em></h2>
+
+  <h3>Datenschutz</h3>
+  <p>Wir nehmen den Schutz eurer persönlichen Daten ernst und behandeln sie vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung. Wir weisen darauf hin, dass die Datenübertragung im Internet (z.&nbsp;B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+
+  <h3>Speicherdauer</h3>
+  <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben eure personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn ihr ein berechtigtes Löschersuchen geltend macht oder eine Einwilligung widerruft, werden eure Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung haben.</p>
+
+  <h3>Rechtsgrundlagen</h3>
+  <p>Sofern ihr in die Datenverarbeitung eingewilligt habt, verarbeiten wir personenbezogene Daten auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO bzw. Art.&nbsp;9 Abs.&nbsp;2 lit.&nbsp;a DSGVO. Sind eure Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir sie auf Grundlage des Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO. Daten zur Erfüllung einer rechtlichen Verpflichtung verarbeiten wir auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO erfolgen.</p>
+
+  <h3>Hinweis zur Datenweitergabe an Drittstaaten</h3>
+  <p>Wir verwenden u.&nbsp;a. Tools von Unternehmen mit Sitz in datenschutzrechtlich nicht sicheren Drittstaaten sowie US-Tools, deren Anbieter teils nach dem EU-US-Data&nbsp;Privacy&nbsp;Framework (DPF) zertifiziert sind. Wenn diese Tools aktiv sind, können personenbezogene Daten in diese Staaten übertragen und dort verarbeitet werden. In datenschutzrechtlich unsicheren Drittstaaten kann kein mit der EU vergleichbares Datenschutzniveau garantiert werden.</p>
+
+  <h3>Widerruf eurer Einwilligung</h3>
+  <p>Viele Datenverarbeitungsvorgänge sind nur mit ausdrücklicher Einwilligung möglich. Ihr könnt eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
+
+  <h3>Widerspruchsrecht (Art.&nbsp;21 DSGVO)</h3>
+  <div class="shout">
+    Wenn die Datenverarbeitung auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;e oder f DSGVO erfolgt, habt ihr jederzeit das Recht, aus Gründen, die sich aus eurer besonderen Situation ergeben, Widerspruch gegen die Verarbeitung einzulegen. Wenn ihr Widerspruch einlegt, werden wir eure personenbezogenen Daten nicht mehr verarbeiten, es sei denn, wir können zwingende schutzwürdige Gründe nachweisen.
+  </div>
+
+  <h3>Beschwerderecht</h3>
+  <p>Im Falle von Verstößen gegen die DSGVO steht euch ein Beschwerderecht bei einer Aufsichtsbehörde zu, insbesondere im Mitgliedstaat eures gewöhnlichen Aufenthalts, eures Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes.</p>
+
+  <h3>Recht auf Datenübertragbarkeit</h3>
+  <p>Ihr habt das Recht, Daten, die wir auf Grundlage eurer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an euch oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.</p>
+
+  <h3>Auskunft, Berichtigung &amp; Löschung</h3>
+  <p>Ihr habt jederzeit das Recht auf unentgeltliche Auskunft über eure gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ggf. ein Recht auf Berichtigung oder Löschung.</p>
+
+  <h3>SSL- bzw. TLS-Verschlüsselung</h3>
+  <p>Diese Seite nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennt ihr daran, dass die Adresszeile von „http://&#8221; auf „https://&#8221; wechselt und am Schloss-Symbol in der Browserzeile.</p>
+</section>
+
+<section class="section wrap">
+  <h2>Soziale <em>Medien</em></h2>
+
+  <h3>Instagram</h3>
+  <p>Auf dieser Website sind Funktionen des Dienstes <strong>Instagram</strong> eingebunden. Anbieter: Meta Platforms Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin&nbsp;2, Irland. Wenn das Social-Media-Element aktiv ist, wird eine direkte Verbindung zwischen eurem Endgerät und dem Instagram-Server hergestellt. Instagram erhält dadurch Informationen über euren Besuch dieser Website.</p>
+  <p>Die Nutzung erfolgt auf Grundlage eurer Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TTDSG. Die Einwilligung ist jederzeit widerrufbar. Datenschutzerklärung von Instagram: <a href="https://privacycenter.instagram.com/policy/" target="_blank" rel="noopener">privacycenter.instagram.com/policy</a>.</p>
+
+  <h3>TikTok</h3>
+  <p>Verlinkungen zu unserem TikTok-Profil werden erst durch euren Klick aktiv. Beim Aufruf von TikTok werden Daten gemäß deren Datenschutzbestimmungen verarbeitet.</p>
+</section>
+
+<section class="section wrap">
+  <h2>Plugins &amp; <em>Tools</em></h2>
+
+  <h3>Google Fonts</h3>
+  <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten Google&nbsp;Fonts, bereitgestellt durch Google&nbsp;Ireland Limited. Beim Aufruf einer Seite lädt euer Browser die benötigten Fonts in den Browsercache. Die Nutzung erfolgt auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+
+  <h3>YouTube (erweiterter Datenschutzmodus)</h3>
+  <p>Falls Videos eingebunden sind, geschieht dies im erweiterten Datenschutzmodus von YouTube (Google&nbsp;Ireland Limited). Es werden in diesem Modus keine Cookies gesetzt; YouTube speichert jedoch Local-Storage-Elemente im Browser. Datenschutzerklärung: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+</section>
+
+<section class="section wrap">
+  <h2>Analyse-Tools &amp; <em>Upload</em></h2>
+
+  <h3>WP Statistics</h3>
+  <p>Diese Website nutzt das Analysetool <strong>WP&nbsp;Statistics</strong> (Veronalabs, Tatari&nbsp;64, 10134 Tallinn, Estland). WP Statistics erfasst u.&nbsp;a. Logdateien (IP-Adresse, Referrer, Browser, Suchmaschine) und Aktionen auf der Seite. Die Daten werden ausschließlich auf unserem eigenen Server gespeichert.</p>
+
+  <h3>OneDrive &amp; Google Drive (Upload)</h3>
+  <p>Für Einreichungen können Uploadbereiche von Microsoft OneDrive (Microsoft Ireland Operations Limited) und Google Drive (Google Ireland Limited) eingebunden werden. Wenn ihr Inhalte hochladet, werden diese auf den Servern des jeweiligen Anbieters gespeichert. Die Verwendung erfolgt auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO; sofern eine Einwilligung abgefragt wird, ausschließlich auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO.</p>
+</section>
+
+<section class="section wrap" style="border-bottom:1px solid var(--rule-soft)">
+  <h2>Fragen zum <em>Datenschutz</em>?</h2>
+  <p>Bei allen Fragen rund um Datenschutz, Einwilligung oder eure gespeicherten Daten meldet euch gerne direkt:</p>
+  <p><a href="mailto:hallo@paedagogik-olympiade.de">hallo@paedagogik-olympiade.de</a></p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="mark">Pädagogik-<br>Olympiade ’27<span>Universität Bielefeld</span></div>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt</h5>
+        <a href="mailto:hallo@paedagogik-olympiade.de">hallo@paedagogik-olympiade.de</a>
+        <a href="https://www.instagram.com/paedagogik_olympiade" target="_blank" rel="noopener">@paedagogik_olympiade</a>
+        <a href="https://www.tiktok.com/@paedagogik.olympiade" target="_blank" rel="noopener">@paedagogik.olympiade</a>
+      </div>
+      <div class="foot-col">
+        <h5>Pädagogik-Olympiade</h5>
+        <a href="index.html">Zur Startseite</a>
+        <a href="index.html#thema">Thema</a>
+        <a href="index.html#einreichen">Einreichen</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 / 27 · Pädagogik-Olympiade</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

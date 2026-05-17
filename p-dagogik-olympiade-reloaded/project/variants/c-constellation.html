@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Pädagogik-Olympiade 2027 — Question Constellation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4ecdb;
+    --bg-2:#ebe0c8;
+    --ink:#1a1410;
+    --ink-2:#3a302a;
+    --terra:#c2553a;
+    --terra-2:#e88c6a;
+    --olive:#6b6e3a;
+    --olive-2:#aab075;
+    --olive-deep:#4d5028;
+    --gold:#e9b34a;
+    --cream:#fbf6ea;
+    --muted:#7a6e60;
+    --ease:cubic-bezier(.22,.7,.25,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+  .mono{font-family:'JetBrains Mono',monospace}
+  a{color:inherit}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 56px;position:relative}
+
+  /* grainy paper */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='.22'/></svg>");mix-blend-mode:multiply;opacity:.4}
+
+  /* ── NAV ──────────────────────────────────── */
+  nav.top{position:sticky;top:0;z-index:30;backdrop-filter:saturate(1.1) blur(14px);-webkit-backdrop-filter:saturate(1.1) blur(14px);background:rgba(244,236,219,.75);border-bottom:1px solid rgba(26,20,16,.1)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;padding:14px 56px;max-width:1240px;margin:0 auto}
+  nav.top .logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+  nav.top .logo .glyph{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold),var(--terra));box-shadow:0 0 12px rgba(194,85,58,.5);animation:pulse 3s ease-in-out infinite alternate}
+  @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.12)}}
+  nav.top .links{display:flex;gap:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:lowercase}
+  nav.top .links a{text-decoration:none;opacity:.6;transition:opacity .2s,color .2s;padding:6px 10px;border-radius:999px}
+  nav.top .links a:hover{opacity:1;background:rgba(26,20,16,.06)}
+  nav.top .cta{font-family:'JetBrains Mono',monospace;font-size:12px;padding:9px 16px;background:var(--ink);color:var(--cream);text-decoration:none;border-radius:999px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:6px;transition:transform .25s var(--ease)}
+  nav.top .cta:hover{transform:translateY(-1px) rotate(-1deg)}
+
+  /* ── HERO — constellation ─────────────────── */
+  .hero{position:relative;padding:60px 0 0;min-height:920px;overflow:hidden}
+  .hero .center{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;min-height:780px;position:relative;z-index:3}
+  .hero .text{position:relative;z-index:5}
+  .hero .eyebrow{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px}
+  .hero .eyebrow .ping{width:8px;height:8px;border-radius:50%;background:var(--terra);box-shadow:0 0 0 0 rgba(194,85,58,.5);animation:ping 2s ease-out infinite}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(194,85,58,.5)}100%{box-shadow:0 0 0 16px rgba(194,85,58,0)}}
+  .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(64px,9.5vw,140px);line-height:.94;letter-spacing:-.035em;margin-bottom:32px;font-variation-settings:"opsz" 96}
+  .hero h1 .q{display:inline-block;color:var(--terra);font-style:italic;font-weight:400;transform-origin:50% 70%;animation:wobble 6s ease-in-out infinite}
+  .hero h1 .gleich{position:relative;display:inline-block}
+  .hero h1 .gleich::after{content:"";position:absolute;left:-4%;right:-4%;top:48%;height:14px;background:var(--gold);transform:skewY(-3deg) translateY(-2px);z-index:-1;border-radius:99px}
+  @keyframes wobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+  .hero p.lead{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;line-height:1.45;color:var(--ink-2);max-width:480px}
+  .hero p.lead em{color:var(--terra);font-style:italic;font-weight:500}
+  .hero .meta{margin-top:48px;display:grid;grid-template-columns:repeat(3,auto);gap:32px}
+  .hero .meta div{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+  .hero .meta b{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;display:block;font-size:24px;letter-spacing:-.01em;color:var(--ink);text-transform:none;margin-top:4px}
+
+  /* orbit visual */
+  .hero .orbit{position:relative;height:680px;width:100%}
+  .hero .sun{position:absolute;left:50%;top:50%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold) 0%,var(--terra) 60%,var(--terra) 100%);box-shadow:0 0 60px rgba(233,179,74,.6),inset -10px -16px 30px rgba(0,0,0,.2);transform:translate(-50%,-50%);z-index:4;display:flex;align-items:center;justify-content:center;color:var(--cream);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:18px;text-align:center;line-height:1.1;letter-spacing:-.01em;padding:20px}
+  .hero .sun span{font-style:italic}
+  .hero .ring{position:absolute;left:50%;top:50%;border:1px dashed rgba(26,20,16,.18);border-radius:50%;transform:translate(-50%,-50%)}
+  .hero .ring-1{width:380px;height:380px;animation:spin 60s linear infinite}
+  .hero .ring-2{width:560px;height:560px;animation:spin 90s linear infinite reverse}
+  .hero .ring-3{width:740px;height:740px;animation:spin 120s linear infinite}
+  @keyframes spin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .hero .planet{position:absolute;left:50%;top:50%;width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:32px;letter-spacing:-.02em;color:var(--cream);box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:3}
+  .hero .planet small{position:absolute;top:104%;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);background:var(--bg);padding:4px 8px;border-radius:99px;white-space:nowrap}
+  .hero .p1{background:var(--terra);transform:translate(calc(-50% + 190px),calc(-50% - 90px));animation:bob 5s ease-in-out infinite}
+  .hero .p2{background:var(--olive);transform:translate(calc(-50% + 260px),calc(-50% + 140px));animation:bob 6s ease-in-out infinite -1s;width:78px;height:78px;font-size:26px}
+  .hero .p3{background:var(--ink);transform:translate(calc(-50% - 240px),calc(-50% + 40px));animation:bob 7s ease-in-out infinite -2s;width:100px;height:100px;font-size:38px}
+  .hero .p4{background:var(--gold);color:var(--ink);transform:translate(calc(-50% - 90px),calc(-50% - 250px));animation:bob 5.5s ease-in-out infinite -3s;width:60px;height:60px;font-size:18px}
+  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
+
+  /* horizon strip */
+  .hero .strip{position:relative;margin-top:80px;border-top:1px solid rgba(26,20,16,.15);border-bottom:1px solid rgba(26,20,16,.15);padding:18px 0;overflow:hidden;white-space:nowrap;z-index:3;background:var(--bg)}
+  .hero .strip .track{display:inline-flex;gap:36px;font-family:'JetBrains Mono',monospace;font-size:14px;text-transform:lowercase;letter-spacing:.05em;animation:flow 40s linear infinite;color:var(--ink-2)}
+  .hero .strip .track span{display:inline-flex;align-items:center;gap:36px}
+  .hero .strip .track i{color:var(--terra);font-style:normal}
+  .hero .strip .track em{font-style:italic;color:var(--olive-deep)}
+  @keyframes flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ── SECTION SCAFFOLD ─────────────────────── */
+  section.s{padding:120px 0;position:relative;z-index:2}
+  .ey{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:28px}
+  .ey .dot{width:8px;height:8px;border-radius:50%;background:var(--terra)}
+  h2.bighead{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(48px,7vw,108px);line-height:.96;letter-spacing:-.03em;margin-bottom:24px;font-variation-settings:"opsz" 96}
+  h2.bighead em{font-style:italic;color:var(--terra);font-weight:400}
+  h2.bighead .ul{background:linear-gradient(transparent 64%,var(--gold) 64%,var(--gold) 84%,transparent 84%)}
+  .deck{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;line-height:1.4;color:var(--ink-2);max-width:680px;margin-bottom:60px}
+
+  /* ── NEU ──────────────────────────────────── */
+  .neu .blobs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+  .neu .blob{position:relative;background:var(--cream);padding:40px 32px 36px;border-radius:36px;overflow:hidden;transition:transform .4s var(--ease);cursor:default}
+  .neu .blob:nth-child(1){border-bottom-left-radius:120px}
+  .neu .blob:nth-child(2){border-top-right-radius:120px}
+  .neu .blob:nth-child(3){border-bottom-right-radius:120px}
+  .neu .blob:hover{transform:translateY(-6px) rotate(-.5deg)}
+  .neu .blob::before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(40px);opacity:.4;z-index:0}
+  .neu .blob:nth-child(1)::before{background:var(--terra);bottom:-60px;right:-40px}
+  .neu .blob:nth-child(2)::before{background:var(--olive);top:-60px;left:-40px}
+  .neu .blob:nth-child(3)::before{background:var(--gold);bottom:-60px;left:-40px}
+  .neu .blob > *{position:relative;z-index:2}
+  .neu .blob .badge{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;background:var(--bg);padding:6px 12px;border-radius:99px;margin-bottom:24px;color:var(--terra)}
+  .neu .blob:nth-child(2) .badge{color:var(--olive-deep)}
+  .neu .blob:nth-child(3) .badge{color:#9c7414}
+  .neu .blob h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:38px;line-height:1.05;letter-spacing:-.02em;margin-bottom:14px}
+  .neu .blob h3 em{font-style:italic;color:var(--terra)}
+  .neu .blob:nth-child(2) h3 em{color:var(--olive-deep)}
+  .neu .blob:nth-child(3) h3 em{color:#9c7414}
+  .neu .blob p{color:var(--ink-2);font-size:15.5px;line-height:1.55}
+
+  /* ── THEMA ────────────────────────────────── */
+  .thema{position:relative}
+  .thema .canvas{position:relative;margin-top:40px;padding:80px;background:var(--ink);color:var(--cream);border-radius:48px;overflow:hidden}
+  .thema .canvas::before,.thema .canvas::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.4}
+  .thema .canvas::before{width:400px;height:400px;background:var(--terra);top:-100px;right:-80px}
+  .thema .canvas::after{width:340px;height:340px;background:var(--olive);bottom:-120px;left:-40px}
+  .thema .canvas > *{position:relative;z-index:2}
+  .thema .canvas .ey{color:var(--gold)}
+  .thema .canvas .ey .dot{background:var(--gold)}
+  .thema h2.bighead{color:var(--cream)}
+  .thema h2.bighead em{color:var(--gold)}
+  .thema .deck{color:rgba(251,246,234,.7)}
+  .thema .pair{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;margin-top:48px;gap:24px}
+  .thema .pair .card{background:rgba(251,246,234,.06);border:1px solid rgba(251,246,234,.14);border-radius:28px;padding:40px 36px;backdrop-filter:blur(20px)}
+  .thema .pair .card .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .thema .pair .card .v{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:54px;line-height:1.02;letter-spacing:-.02em;margin-bottom:18px}
+  .thema .pair .card .v em{font-style:italic;color:var(--gold)}
+  .thema .pair .card p{color:rgba(251,246,234,.75);font-size:15px}
+  .thema .pair .op{font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:400;font-size:80px;text-align:center;color:var(--gold)}
+  .thema .pull{margin-top:60px;font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:clamp(28px,3.4vw,52px);line-height:1.2;letter-spacing:-.015em;max-width:920px;color:var(--cream);font-weight:400}
+  .thema .pull .hl{background:var(--terra);padding:0 .15em;border-radius:6px;font-style:normal}
+  .thema .pull .who{display:block;margin-top:24px;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(251,246,234,.5)}
+
+  /* ── DREI FRAGEN ──────────────────────────── */
+  .fragen .stack{margin-top:40px;display:grid;gap:24px}
+  .fragen .q{position:relative;background:var(--cream);border-radius:32px;padding:48px;display:grid;grid-template-columns:120px 1fr 180px;gap:48px;align-items:center;overflow:hidden;transition:transform .35s var(--ease)}
+  .fragen .q:hover{transform:translateX(8px)}
+  .fragen .q:nth-child(2){background:var(--bg-2)}
+  .fragen .q .num{position:relative;width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:48px;font-weight:500;color:var(--cream)}
+  .fragen .q:nth-child(1) .num{background:var(--terra)}
+  .fragen .q:nth-child(2) .num{background:var(--olive)}
+  .fragen .q:nth-child(3) .num{background:var(--ink)}
+  .fragen .q h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(28px,3.3vw,42px);line-height:1.08;letter-spacing:-.015em;margin-bottom:8px}
+  .fragen .q h3 em{font-style:italic;color:var(--terra)}
+  .fragen .q:nth-child(2) h3 em{color:var(--olive-deep)}
+  .fragen .q p{color:var(--ink-2);font-size:15.5px;max-width:520px}
+  .fragen .q .hint{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--muted);line-height:1.7;border-left:2px solid var(--terra);padding-left:18px}
+  .fragen .q:nth-child(2) .hint{border-color:var(--olive)}
+  .fragen .q:nth-child(3) .hint{border-color:var(--ink)}
+  .fragen .q .hint b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:14px;color:var(--ink);text-transform:none;letter-spacing:0;margin-bottom:6px;font-style:italic}
+  .fragen .note{margin-top:28px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ── WER ──────────────────────────────────── */
+  .wer .split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .wer .lane{background:var(--cream);border-radius:36px;padding:56px 48px;position:relative;overflow:hidden}
+  .wer .lane:nth-child(1){border-bottom-left-radius:160px}
+  .wer .lane:nth-child(2){border-bottom-right-radius:160px}
+  .wer .lane .badge{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:inline-block;padding:6px 12px;border-radius:99px;background:var(--terra);color:var(--cream);margin-bottom:24px}
+  .wer .lane:nth-child(2) .badge{background:var(--olive)}
+  .wer .lane .age{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(96px,12vw,180px);line-height:.86;letter-spacing:-.035em;color:var(--ink)}
+  .wer .lane .age em{font-style:italic;color:var(--terra);font-weight:400}
+  .wer .lane:nth-child(2) .age em{color:var(--olive-deep)}
+  .wer .lane p{margin-top:20px;font-family:'Bricolage Grotesque',sans-serif;font-size:18px;color:var(--ink-2);max-width:360px;line-height:1.45}
+  .wer .lane .pl{margin-top:32px;display:flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--ink-2)}
+  .wer .lane .pl b{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:32px;background:var(--bg);padding:6px 16px;border-radius:99px;letter-spacing:-.01em;color:var(--ink)}
+
+  /* ── ABLAUF ──────────────────────────────── */
+  .ablauf .path{position:relative;margin-top:40px;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  .ablauf .step{background:var(--cream);border-radius:24px;padding:28px 24px;position:relative;transition:transform .3s var(--ease),background .3s var(--ease)}
+  .ablauf .step:hover{transform:translateY(-6px);background:var(--bg-2)}
+  .ablauf .step .ph{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:8px}
+  .ablauf .step .ph::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--terra);margin-right:8px;vertical-align:middle}
+  .ablauf .step .when{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:18px;letter-spacing:-.01em;margin-bottom:14px;color:var(--ink)}
+  .ablauf .step h4{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:20px;line-height:1.15;letter-spacing:-.01em;margin-bottom:8px}
+  .ablauf .step h4 em{font-style:italic;color:var(--terra)}
+  .ablauf .step p{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+
+  /* ── JURY ─────────────────────────────────── */
+  .jury .heads{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+  .jury .head{position:relative;background:var(--cream);border-radius:28px;padding:28px;aspect-ratio:1/1.2;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;transition:transform .35s var(--ease)}
+  .jury .head:hover{transform:translateY(-4px) rotate(-.5deg)}
+  .jury .head::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;filter:blur(30px);opacity:.6;top:-30px;right:-30px}
+  .jury .head:nth-child(1)::before{background:var(--terra)}
+  .jury .head:nth-child(2)::before{background:var(--olive)}
+  .jury .head:nth-child(3)::before{background:var(--gold)}
+  .jury .head:nth-child(4)::before{background:var(--terra-2)}
+  .jury .head .badge{position:absolute;top:24px;left:24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--ink-2)}
+  .jury .head .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:22px;line-height:1.1;letter-spacing:-.01em;position:relative;z-index:2}
+  .jury .head .name em{font-style:italic;color:var(--terra)}
+  .jury .head:nth-child(2) .name em{color:var(--olive-deep)}
+  .jury .head .role{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-2);margin-top:6px;position:relative;z-index:2}
+  .jury .more{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ── PUBLIKATION ──────────────────────────── */
+  .pub{padding-top:120px}
+  .pub .canvas{background:var(--olive);color:var(--cream);border-radius:48px;padding:80px;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+  .pub .canvas::after{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(233,179,74,.3),transparent 70%);right:-100px;bottom:-100px}
+  .pub .canvas .ey{color:var(--gold);position:relative;z-index:2}
+  .pub .canvas .ey .dot{background:var(--gold)}
+  .pub h2.bighead{color:var(--cream);position:relative;z-index:2}
+  .pub h2.bighead em{color:var(--gold)}
+  .pub .canvas p{color:rgba(251,246,234,.8);font-size:17px;max-width:420px;position:relative;z-index:2}
+  .pub .mag{background:var(--cream);color:var(--ink);border-radius:6px;padding:48px 36px;aspect-ratio:.78;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-2deg);box-shadow:-20px 30px 60px rgba(0,0,0,.25);position:relative;z-index:2}
+  .pub .mag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:var(--terra);border-radius:6px 0 0 6px}
+  .pub .mag .meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pub .mag .title{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:40px;line-height:1.02;letter-spacing:-.02em}
+  .pub .mag .title em{font-style:italic;color:var(--terra)}
+  .pub .mag .foot{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+
+  /* ── EINREICHEN ───────────────────────────── */
+  .einreichen{padding:140px 0 100px}
+  .einreichen .head{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
+  .einreichen .reqs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .einreichen .req{background:var(--cream);border-radius:24px;padding:32px 28px;transition:transform .3s var(--ease),background .3s var(--ease)}
+  .einreichen .req:hover{transform:translateY(-4px);background:var(--bg-2)}
+  .einreichen .req .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .einreichen .req .k::before{content:"●";color:var(--terra)}
+  .einreichen .req .v{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.01em;margin-bottom:10px}
+  .einreichen .req .v em{font-style:italic;color:var(--terra)}
+  .einreichen .req small{font-size:14px;color:var(--ink-2);line-height:1.5;display:block}
+  .einreichen .mailcard{margin-top:48px;background:var(--ink);color:var(--cream);border-radius:36px;padding:56px 48px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;position:relative;overflow:hidden}
+  .einreichen .mailcard::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,var(--terra),transparent 70%);opacity:.5;filter:blur(20px);right:-80px;top:-100px}
+  .einreichen .mailcard > *{position:relative;z-index:2}
+  .einreichen .mailcard .ey{color:var(--gold);margin-bottom:14px}
+  .einreichen .mailcard .ey .dot{background:var(--gold)}
+  .einreichen .mailcard h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:44px;line-height:1.05;letter-spacing:-.015em;color:var(--cream)}
+  .einreichen .mailcard h3 em{font-style:italic;color:var(--gold)}
+  .einreichen .mailcard a{font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:none;background:var(--gold);color:var(--ink);padding:18px 26px;border-radius:99px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:10px;transition:transform .25s var(--ease)}
+  .einreichen .mailcard a:hover{transform:translateY(-2px) rotate(-1deg)}
+
+  /* ── FAQ ──────────────────────────────────── */
+  .faq details{background:var(--cream);border-radius:20px;padding:24px 28px;margin-bottom:12px;cursor:pointer;transition:background .25s var(--ease)}
+  .faq details:hover{background:var(--bg-2)}
+  .faq details[open]{background:var(--bg-2)}
+  .faq summary{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:22px;line-height:1.2;letter-spacing:-.005em;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:28px;color:var(--terra);transition:transform .3s var(--ease);line-height:.7}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{margin-top:14px;color:var(--ink-2);font-size:15.5px;max-width:780px}
+
+  /* ── FOOTER ───────────────────────────────── */
+  footer{background:var(--ink);color:var(--cream);padding:100px 56px 36px;border-radius:48px 48px 0 0;margin-top:80px;position:relative;overflow:hidden}
+  footer::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--terra),transparent 70%);opacity:.25;filter:blur(40px);left:-150px;top:-200px}
+  footer .inner{max-width:1240px;margin:0 auto;position:relative;z-index:2}
+  footer .word{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(80px,14vw,232px);line-height:.86;letter-spacing:-.04em;color:var(--cream);font-variation-settings:"opsz" 96}
+  footer .word em{font-style:italic;color:var(--gold);font-weight:400}
+  footer .word .terra{color:var(--terra-2)}
+  footer .meta{margin-top:80px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px}
+  footer .meta h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,246,234,.5);margin-bottom:16px}
+  footer .meta p,footer .meta a{color:rgba(251,246,234,.78);font-size:14px;line-height:1.6;text-decoration:none;display:block}
+  footer .meta a:hover{color:var(--gold)}
+  footer .bottom{margin-top:80px;padding-top:24px;border-top:1px solid rgba(251,246,234,.15);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,246,234,.5)}
+
+  /* reveal */
+  [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+  [data-reveal].in{opacity:1;transform:none}
+
+  body.compact section.s{padding:80px 0}
+  body.still .hero h1 .q,body.still .hero .ring,body.still .hero .planet,body.still nav.top .logo .glyph,body.still .strip .track,body.still .hero .eyebrow .ping{animation:none!important}
+  body.still [data-reveal]{opacity:1;transform:none;transition:none}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="row">
+    <div class="logo"><span class="glyph"></span><span>Pädagogik-Olympiade</span></div>
+    <div class="links">
+      <a href="#thema">thema</a>
+      <a href="#fragen">fragen</a>
+      <a href="#ablauf">ablauf</a>
+      <a href="#jury">jury</a>
+      <a href="#faq">faq</a>
+    </div>
+    <a class="cta" href="#einreichen">→ einreichen</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="center">
+      <div class="text">
+        <div class="eyebrow"><span class="ping"></span><span>Vol. 04 · 19. Februar 2027 · Uni Bielefeld</span></div>
+        <h1>Was ist <span class="q">gerecht</span> —<br>und für wen ist es das <span class="gleich">gleiche</span>?</h1>
+        <p class="lead">Drei Fragen. Zwei Altersbahnen. <em>Eine</em> Olympiade über das, was niemand wirklich erklärt — und alle erleben.</p>
+        <div class="meta">
+          <div>Termin<b>19.02.2027</b></div>
+          <div>Ort<b>Bielefeld</b></div>
+          <div>Deadline<b>10.01.2027</b></div>
+        </div>
+      </div>
+      <div class="orbit" aria-hidden="true">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="sun"><span>(Un-)<br>Gerecht.</span></div>
+        <div class="planet p1">01<small>Wo?</small></div>
+        <div class="planet p2">02<small>Was wäre fair?</small></div>
+        <div class="planet p3">03<small>Wer entscheidet?</small></div>
+        <div class="planet p4">?<small>du</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="strip" aria-hidden="true">
+    <div class="track">
+      <span>klasse <i>·</i> sprache <i>·</i> körper <i>·</i> stadt <i>·</i> geld <i>·</i> herkunft <i>·</i> gender <i>·</i> macht <i>·</i> familie <i>·</i> zukunft <i>·</i> schule <i>·</i> chance</span>
+      <span>klasse <i>·</i> sprache <i>·</i> körper <i>·</i> stadt <i>·</i> geld <i>·</i> herkunft <i>·</i> gender <i>·</i> macht <i>·</i> familie <i>·</i> zukunft <i>·</i> schule <i>·</i> chance</span>
+    </div>
+  </div>
+</header>
+
+<!-- NEU -->
+<section class="s neu" id="neu">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>01 · Neu in 2027</span></div>
+    <h2 class="bighead" data-reveal>Drei <em>Sprünge</em><br>für <span class="ul">2027</span>.</h2>
+    <p class="deck" data-reveal>Was 2027 anders ist — und warum.</p>
+    <div class="blobs">
+      <article class="blob" data-reveal>
+        <span class="badge">● Bahnen</span>
+        <h3>Zwei <em>Altersbahnen</em>.</h3>
+        <p>Wir öffnen die Olympiade für 9–11 und 12–13 Jahre. Eigene Aufgaben, getrennte Bewertung, gleiche Bühne.</p>
+      </article>
+      <article class="blob" data-reveal>
+        <span class="badge">● Aufgabe</span>
+        <h3>Drei <em>scharfe</em> Fragen.</h3>
+        <p>Statt offenem Motto: drei zugespitzte Fragen. Ihr wählt — eine, zwei oder alle drei — und antwortet in eurem Format.</p>
+      </article>
+      <article class="blob" data-reveal>
+        <span class="badge">● Reichweite</span>
+        <h3>Live im <em>Stream</em>.</h3>
+        <p>Die große Diskussion am 19.02. wird übertragen und aufgezeichnet. Schulen, Eltern, Freund:innen können dabei sein. <em>Details folgen.</em></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- THEMA -->
+<section class="s thema" id="thema">
+  <div class="wrap">
+    <div class="canvas">
+      <div class="ey" data-reveal><span class="dot"></span><span>02 · Thema</span></div>
+      <h2 class="bighead" data-reveal>(Un)gleich <em>≠</em><br>(un)gerecht.</h2>
+      <p class="deck" data-reveal>Eine kleine begriffliche Werkstatt, weil fast jede Debatte hier durcheinandergerät. Wer Schule fairer machen will, sollte zuerst wissen, was er meint.</p>
+
+      <div class="pair" data-reveal>
+        <div class="card">
+          <div class="k">Term A</div>
+          <div class="v">Gleichheit</div>
+          <p>Alle bekommen <em style="color:var(--gold);font-style:italic">dasselbe</em>. Eine Stunde, ein Test, ein Maßstab. Klingt fair — ist es selten.</p>
+        </div>
+        <div class="op">≠</div>
+        <div class="card">
+          <div class="k">Term B</div>
+          <div class="v">Gerechtigkeit</div>
+          <p>Alle bekommen, <em style="color:var(--gold);font-style:italic">was sie brauchen</em>. Hinschauen ist Voraussetzung, nicht Bonus.</p>
+        </div>
+      </div>
+
+      <p class="pull" data-reveal>
+        <span class="hl">Bildung trennt</span>, bevor sie verbindet.<br>Eure Aufgabe: das umdrehen.
+        <span class="who">— im Geist von Bourdieu · Hurrelmann · Bauer</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FRAGEN -->
+<section class="s fragen" id="fragen">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>03 · Eure Aufgabe</span></div>
+    <h2 class="bighead" data-reveal>Drei Fragen.<br><em>Eine</em> reicht.</h2>
+    <p class="deck" data-reveal>Wählt eine, zwei oder alle drei. Format frei — Text, Video, Audio, Spiel, Bild, Performance, Code. Wir wollen Position, nicht Kompromiss.</p>
+
+    <div class="stack">
+      <div class="q" data-reveal>
+        <div class="num">01</div>
+        <div><h3>Wo erlebst <em>du</em> Ungerechtigkeit — und wer profitiert davon?</h3><p>Nicht das, was im Feed steht. Was du selbst spürst — in Klasse, Pause, Familie, Stadt.</p></div>
+        <div class="hint"><b>Beobachten</b>konkrete Szene<br>klare Sprache<br>eine eigene These</div>
+      </div>
+      <div class="q" data-reveal>
+        <div class="num">02</div>
+        <div><h3>Was wäre <em>fair</em> — und wer entscheidet das eigentlich?</h3><p>Wenn du eine Sache ändern dürftest, weil sie ungerecht ist: welche? Und wer hätte das Recht zu entscheiden?</p></div>
+        <div class="hint"><b>Vorschlagen</b>eine Reform<br>eine Stimme<br>ein Argument</div>
+      </div>
+      <div class="q" data-reveal>
+        <div class="num">03</div>
+        <div><h3>Kann <em>Schule</em> überhaupt gerecht sein?</h3><p>Manche sagen: nein, sie reproduziert. Andere: ja, sie ist der einzige Ort, an dem es klappen könnte. Was sagst du?</p></div>
+        <div class="hint"><b>Streiten</b>Position<br>Begründung<br>Beispiel</div>
+      </div>
+    </div>
+    <p class="note">↳ Diese drei Fragen sind Platzhalter und werden mit dem finalen Wortlaut ersetzt.</p>
+  </div>
+</section>
+
+<!-- WER -->
+<section class="s wer" id="wer">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>04 · Wer mitmacht</span></div>
+    <h2 class="bighead" data-reveal>Zwei Bahnen,<br><em>ein</em> Tag.</h2>
+    <div class="split">
+      <div class="lane" data-reveal>
+        <span class="badge">Bahn 1 · jünger</span>
+        <div class="age"><em>9</em>—11</div>
+        <p>Schüler:innen aus den Klassen 3 bis 6. Einzeln, im Team, als ganze Klasse. Wir wählen eine kuratierte Auswahl aus und laden nach Bielefeld ein.</p>
+        <div class="pl"><b>40</b><span>Plätze vor Ort</span></div>
+      </div>
+      <div class="lane" data-reveal>
+        <span class="badge">Bahn 2 · älter</span>
+        <div class="age"><em>12</em>—13</div>
+        <p>Schüler:innen aus den Klassen 7 bis 9. Genauso offen — wir erwarten aber eine etwas tiefere Auseinandersetzung mit den Fragen.</p>
+        <div class="pl"><b>40</b><span>Plätze vor Ort</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="s ablauf" id="ablauf">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>05 · Ablauf</span></div>
+    <h2 class="bighead" data-reveal>Vom Start<br><em>bis</em> Bielefeld.</h2>
+    <div class="path" data-reveal>
+      <div class="step"><div class="ph">Phase 01</div><div class="when">Apr — Sep 2026</div><h4>Olympiade <em>öffnet</em>.</h4><p>Auftakt, Begleithefte, erste Werkstätten.</p></div>
+      <div class="step"><div class="ph">Phase 02</div><div class="when">Okt — Dez 2026</div><h4>Beiträge <em>entstehen</em>.</h4><p>Allein, im Team, im Kurs. Wir helfen auf Insta.</p></div>
+      <div class="step"><div class="ph">Phase 03</div><div class="when">10. Jan 2027</div><h4>Einsende-<em>schluss</em>.</h4><p>Per Mail oder Formular. Bestätigung in 48 h.</p></div>
+      <div class="step"><div class="ph">Phase 04</div><div class="when">Ende Jan 2027</div><h4>Jury <em>tagt</em>.</h4><p>Wissenschaftler:innen, Lehrkräfte, Schüler:innen.</p></div>
+      <div class="step"><div class="ph">Phase 05</div><div class="when">19. Feb 2027</div><h4>Tag der <em>Olympiade</em>.</h4><p>Vorstellung, Preise, große Diskussion — live.</p></div>
+      <div class="step"><div class="ph">Phase 06</div><div class="when">Frühjahr 2027</div><h4>Publikation in <em>PÄDAGOGIK</em>.</h4><p>Würdigung in der Fachzeitschrift.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- JURY -->
+<section class="s jury" id="jury">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>06 · Jury</span></div>
+    <h2 class="bighead" data-reveal>Liest. Hört. Schaut.<br><em>Diskutiert</em>.</h2>
+    <p class="deck" data-reveal>Eine Jury aus Wissenschaftler:innen, Lehrkräften und Schüler:innen. Keine Punkte, keine Algorithmen — ehrliche, begründete Urteile.</p>
+    <div class="heads">
+      <div class="head" data-reveal><span class="badge">J/01</span><div class="name">Prof. Dr.<br>Ullrich <em>Bauer</em></div><div class="role">Leitung · Uni Bielefeld</div></div>
+      <div class="head" data-reveal><span class="badge">J/02</span><div class="name">Prof. Dr.<br>Klaus <em>Hurrelmann</em></div><div class="role">Sozialisationsforschung</div></div>
+      <div class="head" data-reveal><span class="badge">J/03</span><div class="name">N. N.<br><em>Lehrkraft</em></div><div class="role">Pädagogik · Gymnasium</div></div>
+      <div class="head" data-reveal><span class="badge">J/04</span><div class="name">N. N.<br><em>Schüler-Jury</em></div><div class="role">Klasse 8</div></div>
+    </div>
+    <div class="more">↳ + weitere Wissenschaftler:innen — Liste folgt im Herbst 2026</div>
+  </div>
+</section>
+
+<!-- PUBLIKATION -->
+<section class="s pub" id="publikation">
+  <div class="wrap">
+    <div class="canvas">
+      <div data-reveal>
+        <div class="ey"><span class="dot"></span><span>07 · Publikation</span></div>
+        <h2 class="bighead">Eure Stimme<br><em>im</em> Diskurs.</h2>
+        <p>Die Beiträge der ersten Plätze werden in der Zeitschrift <b>PÄDAGOGIK</b> gewürdigt — eine der wichtigsten Fachzeitschriften für Lehrer:innen in Deutschland. Mit Foto, Auszug, Begleittext.</p>
+      </div>
+      <div class="mag" data-reveal>
+        <div class="meta">Pädagogik · 03/2027 · 79. Jg.</div>
+        <div class="title">(Un-)<em>Gerecht.</em><br>Was Schüler:innen jetzt fordern.</div>
+        <div class="foot"><span>PO 2027</span><span>S. 24–38</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EINREICHEN -->
+<section class="s einreichen" id="einreichen">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>08 · Einreichen</span></div>
+    <div class="head">
+      <h2 class="bighead" data-reveal>Bereit? <em>Los</em>.</h2>
+      <p class="deck" style="margin:0" data-reveal>Schickt euren Beitrag per Mail. Wir bestätigen jede Einsendung innerhalb von 48 Stunden.</p>
+    </div>
+    <div class="reqs" data-reveal>
+      <div class="req"><div class="k">01 · Wer</div><div class="v">Einzeln, im Team oder <em>als Klasse</em></div><small>Pro Gruppe ein Gesamtbeitrag. Mehrere Teams einer Schule sind willkommen.</small></div>
+      <div class="req"><div class="k">02 · Was</div><div class="v">Beitrag zu <em>1, 2 oder 3</em> Fragen</div><small>Format frei: Text, Video, Audio, Spiel, Bild, Performance, Code.</small></div>
+      <div class="req"><div class="k">03 · Wie</div><div class="v">Direkt <em>bis 500 MB</em></div><small>Größer? transfernow.com nutzen, Link in die Mail packen.</small></div>
+      <div class="req"><div class="k">04 · Beilegen</div><div class="v">Kontakt, Alter, Schule, <em>Klasse</em></div><small>Damit wir euch zuordnen, antworten und einladen können.</small></div>
+      <div class="req"><div class="k">05 · Bewertet wird</div><div class="v">Kreativität, Tiefe, <em>Position</em></div><small>Originell, fachlich begründet, klare Haltung. Ehrlichkeit zählt mehr als Hochglanz.</small></div>
+      <div class="req"><div class="k">06 · Deadline</div><div class="v">10. Januar <em>2027</em> · 23:59</div><small>Späte Einsendungen nur in Ausnahmen — vorher fragen.</small></div>
+    </div>
+    <div class="mailcard" data-reveal>
+      <div>
+        <div class="ey"><span class="dot"></span><span>Schreibt uns</span></div>
+        <h3>Eure Mail an <em>uns</em>.</h3>
+      </div>
+      <a href="mailto:hallo@paedagogik-olympiade.de?subject=Einreichung%20P%C3%A4dagogik-Olympiade%202027">hallo@paedagogik-olympiade.de →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s faq" id="faq">
+  <div class="wrap">
+    <div class="ey" data-reveal><span class="dot"></span><span>09 · FAQ</span></div>
+    <h2 class="bighead" data-reveal>Oft <em>gefragt</em>.</h2>
+    <div data-reveal style="margin-top:36px">
+      <details><summary>Wer kann mitmachen?</summary><p>Alle Schüler:innen zwischen 9 und 13 Jahren. Einzeln, im Team oder als ganzer Kurs. Keine Beschränkungen hinsichtlich Schulform.</p></details>
+      <details><summary>Müssen wir alle drei Fragen beantworten?</summary><p>Nein. Eine Frage reicht — wenn ihr richtig in die Tiefe geht. Mehr ist möglich, aber nicht Pflicht.</p></details>
+      <details><summary>Welche Formate sind erlaubt?</summary><p>Alle. Video, Podcast, Essay, Gedicht, Brettspiel, App, Skulptur, Performance, Comic, Insta-Reel … Hauptsache, eure Antwort wird klar.</p></details>
+      <details><summary>Können Lehrkräfte mithelfen?</summary><p>Klar. Lehrkräfte dürfen begleiten, beraten, motivieren — sie sollten aber nicht selbst die Antwort sein.</p></details>
+      <details><summary>Wie groß darf die Datei sein?</summary><p>Per Mail bis 500 MB. Größer? Bei transfernow.com hochladen und den Link in eure Mail packen.</p></details>
+      <details><summary>Was bekommen die Gewinner:innen?</summary><p>Eine Preisverleihung in Bielefeld, handsignierte Bücher, Schulbesuche von Wissenschaftler:innen und eine Veröffentlichung in der Zeitschrift PÄDAGOGIK.</p></details>
+      <details><summary>Was kostet die Teilnahme?</summary><p>Nichts. Die Olympiade ist kostenfrei. Bei Bedarf unterstützen wir bei Anreise und Unterkunft.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div class="word"><span class="terra">(Un-)</span><em>gerecht.</em></div>
+    <div class="meta">
+      <div>
+        <h5>Veranstalter</h5>
+        <p>Prof. Dr. Ullrich Bauer<br>Universität Bielefeld<br>Fakultät für Erziehungswissenschaft<br>AG Sozialisation (ZPI)<br>Konsequenz 41A, Z-Gebäude<br>33501 Bielefeld</p>
+      </div>
+      <div><h5>Kontakt</h5><a href="mailto:hallo@paedagogik-olympiade.de">hallo@paedagogik-olympiade.de</a></div>
+      <div><h5>Sozial</h5><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+      <div><h5>Rechtliches</h5><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+    </div>
+    <div class="bottom"><span>© 2027 · Pädagogik-Olympiade</span><span>Vol. 04 · 19.02.2027 · Bielefeld</span></div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
