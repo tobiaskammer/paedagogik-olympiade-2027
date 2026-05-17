@@ -69,7 +69,9 @@ main{position:relative;z-index:2}
 .topbar .mark{font-family:var(--serif);font-style:italic;font-size:18px;
   font-weight:400;color:var(--ink);text-decoration:none}
 .topbar .back{display:inline-flex;align-items:center;gap:8px;
-  color:var(--ink);text-decoration:none;font-weight:500;opacity:.8}
+  color:var(--ink);text-decoration:none;font-weight:500;opacity:.8;
+  padding:8px 10px;min-height:40px}
+.topbar .mark{padding:6px 0;min-height:40px;display:inline-flex;align-items:center}
 .topbar .back:hover{opacity:1;color:var(--terra-deep)}
 .topbar .back::before{content:"←";font-family:var(--serif);font-style:italic;font-size:16px}
 
@@ -129,7 +131,8 @@ footer .wrap{max-width:1240px}
 .foot-col h5{font-family:var(--sans);font-size:11px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:14px}
 .foot-col a{color:rgba(248,242,228,.75);text-decoration:none;display:block;
-  margin-bottom:8px}
+  padding:6px 0;min-height:32px;line-height:1.5}
+@media (max-width:640px){.foot-col a{min-height:40px;padding:10px 0}}
 .foot-col a:hover{color:var(--cream)}
 .foot-bottom{padding-top:20px;display:flex;justify-content:space-between;
   gap:24px;flex-wrap:wrap;font-size:12px;color:rgba(248,242,228,.5)}
