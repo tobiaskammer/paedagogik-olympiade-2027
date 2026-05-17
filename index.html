@@ -227,14 +227,18 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
 .neu{background:transparent;
   padding-top:calc(var(--section-pad) * var(--density) * .5)}
 .neu .section-head{text-align:center}
-.neu-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
-  gap:10px 18px;margin-top:64px;
-  font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);
+.neu-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:14px 26px;margin-top:80px;
+  font-family:var(--serif);font-size:32px;font-weight:400;color:var(--ink);
   font-style:italic}
 .neu-meta .hl{background:rgba(74,107,140,.22);color:#2c4a6f;
-  padding:4px 12px;border-radius:6px;font-style:italic;
-  letter-spacing:.06em;text-transform:uppercase;font-size:.78em;font-weight:500}
-.neu-meta .sep{color:var(--ink-2);opacity:.45;font-style:normal}
+  padding:10px 22px;border-radius:10px;font-style:italic;
+  letter-spacing:.08em;text-transform:uppercase;
+  font-size:clamp(16px,2vw,22px);font-weight:600;
+  box-shadow:0 6px 18px -8px rgba(44,74,111,.35)}
+.neu-meta .sep{color:var(--terra);opacity:.7;font-style:normal;font-size:1.2em}
+@media (max-width:640px){.neu-meta{gap:10px 14px;margin-top:56px}
+  .neu-meta .hl{font-size:14px;padding:8px 16px}}
 .section-head{margin-bottom:var(--section-head-gap)}
 .section-head h2{font-family:var(--serif);font-weight:300;
   font-size:clamp(30px,3.6vw,50px);line-height:1.02;letter-spacing:-.018em}
