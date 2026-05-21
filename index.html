@@ -553,6 +553,20 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
 .cta-foot{font-family:var(--sans);font-size:12px;color:rgba(248,242,228,.6);
   line-height:1.5;margin-top:auto}
 @media (max-width:880px){.einreich-grid{grid-template-columns:1fr}}
+.download-row{display:flex;flex-direction:column;align-items:center;gap:10px;
+  margin-top:32px;text-align:center}
+.download-btn{display:inline-flex;align-items:center;gap:10px;
+  background:transparent;color:var(--terra-deep);
+  border:1.5px solid var(--terra);padding:13px 22px;
+  border-radius:999px;text-decoration:none;font-family:var(--sans);
+  font-weight:600;font-size:14px;letter-spacing:.02em;
+  transition:background .2s, color .2s, transform .2s}
+.download-btn:hover{background:var(--terra);color:var(--cream);transform:translateY(-1px)}
+.download-btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;pointer-events:none;
+  border-color:var(--rule);color:var(--ink-2)}
+.download-btn .ico{width:16px;height:16px;flex:0 0 16px}
+.download-note{font-family:var(--sans);font-size:12px;letter-spacing:.04em;
+  color:var(--ink-2);opacity:.75}
 
 /* FAQ — flying Pong bubbles */
 #faq{padding-top:calc(var(--section-pad) * var(--density) * .55);
@@ -756,7 +770,7 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         <div class="k">Format</div>
         <h3>Fragen statt Wettbewerb</h3>
         <p>Keine Plakate, keine Podcasts, keine Klassenrang­liste mehr. Im Zentrum stehen
-        eure eigenen Fragen — und ihre Begründung.</p>
+        eure eigenen Fragen — und ihre Erläuterung.</p>
       </div>
       <div class="card">
         <div class="icon" aria-hidden="true">
@@ -771,8 +785,7 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         </div>
         <div class="k">Einreichung</div>
         <h3>Drei Fragen, drei Texte</h3>
-        <p>Je Frage eine kurze Erläuterung. Maximal 4&thinsp;000 Zeichen pro Begründung,
-        digital oder handschriftlich.</p>
+        <p>Pro Frage eine Erläuterung. Maximal 4&thinsp;000 Zeichen pro Erläuterung.</p>
       </div>
       <div class="card">
         <div class="icon" aria-hidden="true">
@@ -821,8 +834,8 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
     </div>
     <p class="reveal" style="max-width:780px;font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink-2);margin-bottom:8px">
       Reicht drei Fragen ein, die euch zum Thema umtreiben. Pro Frage eine
-      Begründung — handschriftlich oder digital. Entscheidend ist nicht die
-      Frage selbst, sondern was hinter ihr steckt.
+      Erläuterung. Entscheidend ist nicht die Frage selbst, sondern was
+      hinter ihr steckt.
     </p>
     <div class="fragen reveal">
       <article class="frage">
@@ -893,7 +906,7 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         <div class="when">Herbst 2026</div>
         <div class="what">
           <h4>Einsendeschluss</h4>
-          <p>Sende uns deine drei Fragen plus drei Begründungen. </p>
+          <p>Sende uns deine drei Fragen plus drei Erläuterungen. </p>
         </div>
       </div>
       <div class="tl-row">
@@ -999,10 +1012,9 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         <h4>Was du einreichst</h4>
         <ul class="check">
           <li><b>Drei Fragen</b> zum Thema „(Un-)Gleichheit und (Un-)Gerechtigkeit“.</li>
-          <li><b>Drei Begründungen</b>, jeweils max. 4 000 Zeichen (ca. eine Seite pro Frage).</li>
+          <li><b>Drei Erläuterungen</b>, jeweils max. 4 000 Zeichen (ca. eine Seite pro Frage).</li>
           <li><b>Pädagogische, gesellschaftliche oder wissenschaftliche Bezüge</b> — wo immer du sie siehst.</li>
           <li><b>Deine Haltung</b> zur jeweiligen Frage.</li>
-          <li><b>Format frei:</b> digital getippt oder handschriftlich gescannt.</li>
           <li><b>Einzelbewerbung</b> — bitte keine Gruppen oder Kurse.</li>
           <li>Mit Name, Jahrgangsstufe, Schule &amp; Kontakt­möglichkeit.</li>
         </ul>
@@ -1012,6 +1024,17 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         <a href="mailto:hallo@paedagogik-olympiade.de?subject=Bewerbung%20P%C3%A4dagogik-Olympiade%202027" class="mail">hallo@paedagogik-olympiade.de</a>
         <a href="mailto:hallo@paedagogik-olympiade.de?subject=Bewerbung%20P%C3%A4dagogik-Olympiade%202027" class="cta-btn">Bewerbung schicken</a>
       </div>
+    </div>
+    <div class="download-row">
+      <a class="download-btn" aria-disabled="true" tabindex="-1" role="button">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12"/>
+          <path d="m7 10 5 5 5-5"/>
+          <path d="M5 21h14"/>
+        </svg>
+        Ausschreibungstext (PDF)
+      </a>
+      <span class="download-note">folgt in Kürze</span>
     </div>
   </div>
 </section>
@@ -1024,11 +1047,11 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
     <details>
       <summary>Kann ich als Team einreichen?</summary>
       <p>Nein — 2027 sind nur Einzelbewerbungen zugelassen. Es geht um deine
-      Fragen, deine Begründung, deine Haltung. Über deine Themen kannst du
+      Fragen, deine Erläuterung, deine Haltung. Über deine Themen kannst du
       natürlich gerne mit anderen sprechen.</p>
     </details>
     <details>
-      <summary>Wie lang darf eine Begründung sein?</summary>
+      <summary>Wie lang darf eine Erläuterung sein?</summary>
       <p>Maximal 4 000 Zeichen — etwa eine Seite pro Frage. Kürzer ist okay,
       länger nicht.</p>
     </details>
@@ -1045,11 +1068,6 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
       (z. B. PISA, Bildungs­bericht, Hurrelmanns Jugendstudien), wissenschaftliche
       Debatten, aber auch konkrete pädagogische Praxis — Schule, Jugendhilfe,
       Erziehung, Care.</p>
-    </details>
-    <details>
-      <summary>Handschriftlich oder digital — was ist besser?</summary>
-      <p>Beides ist willkommen. Wenn du handschriftlich einreichst, achte auf
-      gute Lesbarkeit beim Scan.</p>
     </details>
     <details>
       <summary>Was passiert, wenn ich ausgewählt werde?</summary>
