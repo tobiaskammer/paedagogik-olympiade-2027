@@ -351,6 +351,32 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
   font-size:11px;color:var(--ink-2);opacity:.65;letter-spacing:.06em}
 @media (max-width:980px){.fragen{grid-template-columns:1fr}}
 
+/* Warum wir fragen — Erklär-Kasten */
+.warum-fragen{max-width:780px;margin:32px 0 8px;
+  background:rgba(248,242,228,.55);
+  border:1px solid var(--rule-soft);border-left:3px solid var(--terra);
+  border-radius:6px;padding:26px 30px;position:relative;
+  box-shadow:0 14px 36px -22px rgba(34,29,20,.18)}
+.warum-fragen .kicker{font-family:var(--sans);font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--terra-deep);font-weight:600;margin-bottom:8px}
+.warum-fragen h3{font-family:var(--serif);font-weight:400;font-size:24px;
+  line-height:1.25;letter-spacing:-.01em;color:var(--ink);
+  margin-bottom:14px}
+.warum-fragen h3 em{font-style:italic;color:var(--terra-deep)}
+.warum-fragen p{font-family:var(--serif);font-size:16px;line-height:1.65;
+  color:var(--ink-2);margin-bottom:12px}
+.warum-fragen p:last-child{margin-bottom:0}
+.warum-fragen .leitfragen{margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--rule-soft);
+  display:flex;flex-direction:column;gap:8px}
+.warum-fragen .leitfragen li{font-family:var(--sans);font-size:13.5px;
+  line-height:1.5;color:var(--ink-2);padding-left:20px;position:relative;
+  list-style:none}
+.warum-fragen .leitfragen li::before{content:"?";position:absolute;left:0;top:0;
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  color:var(--terra);font-size:16px;line-height:1.4}
+
 /* ALTERSSTUFEN */
 #alter{padding-top:calc(var(--section-pad) * var(--density) * .575)}
 .alter-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;
@@ -837,6 +863,24 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
       Erläuterung. Entscheidend ist nicht die Frage selbst, sondern was
       hinter ihr steckt.
     </p>
+    <aside class="warum-fragen reveal">
+      <div class="kicker">Hintergrund</div>
+      <h3>Warum wir <em>fragen</em> — und nicht antworten</h3>
+      <p>Gute Fragen bewegen mehr als fertige Antworten. Eine Frage zeigt,
+      wo jemand hinschaut: was er für klärungs­bedürftig hält, was ihn
+      unruhig macht, was er noch nicht weiß. Genau deshalb steht bei der
+      Olympiade nicht die Antwort im Mittelpunkt, sondern die Frage.</p>
+      <p>Wir bitten dich, deine Fragen zu erläutern — nicht, um sie zu
+      rechtfertigen, sondern um sichtbar zu machen, wie sie entstanden sind:
+      aus welchen Erfahrungen, Beobachtungen, Lektüren. Denn eine Frage ist
+      nie neutral. Sie kommt aus einem Leben, aus einer Haltung, aus einem
+      Blick auf die Welt.</p>
+      <ul class="leitfragen">
+        <li>Warum hat die Frage Relevanz — für dich, für andere, für die Gesellschaft?</li>
+        <li>Welchen Einfluss hat sie auf dich und deine Sozialisation?</li>
+        <li>Warum stellst gerade <em>du</em> diese Frage — und nicht die anderen?</li>
+      </ul>
+    </aside>
     <div class="fragen reveal">
       <article class="frage">
         <div class="num">01</div>
