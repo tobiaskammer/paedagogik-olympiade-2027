@@ -352,11 +352,12 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
 @media (max-width:980px){.fragen{grid-template-columns:1fr}}
 
 /* Warum wir fragen — Erklär-Kasten */
-.warum-fragen{max-width:780px;margin:32px 0 8px;
+.warum-fragen{max-width:780px;margin:56px auto 8px;
   background:rgba(248,242,228,.55);
   border:1px solid var(--rule-soft);border-left:3px solid var(--terra);
   border-radius:6px;padding:26px 30px;position:relative;
-  box-shadow:0 14px 36px -22px rgba(34,29,20,.18)}
+  box-shadow:0 14px 36px -22px rgba(34,29,20,.18);
+  text-align:left}
 .warum-fragen .kicker{font-family:var(--sans);font-size:11px;
   letter-spacing:.22em;text-transform:uppercase;
   color:var(--terra-deep);font-weight:600;margin-bottom:8px}
@@ -369,13 +370,8 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
 .warum-fragen p:last-child{margin-bottom:0}
 .warum-fragen .leitfragen{margin-top:14px;padding-top:14px;
   border-top:1px solid var(--rule-soft);
-  display:flex;flex-direction:column;gap:8px}
-.warum-fragen .leitfragen li{font-family:var(--sans);font-size:13.5px;
-  line-height:1.5;color:var(--ink-2);padding-left:20px;position:relative;
-  list-style:none}
-.warum-fragen .leitfragen li::before{content:"?";position:absolute;left:0;top:0;
-  font-family:var(--serif);font-style:italic;font-weight:400;
-  color:var(--terra);font-size:16px;line-height:1.4}
+  font-family:var(--serif);font-style:italic;font-size:16px;
+  line-height:1.65;color:var(--ink-2)}
 
 /* ALTERSSTUFEN */
 #alter{padding-top:calc(var(--section-pad) * var(--density) * .575)}
@@ -756,6 +752,10 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
     <span>Teilhabe</span><span>Care</span>
     <span>Privilegien</span><span>Diversität</span><span>Klassismus</span>
     <span>Identität</span><span>Herkunft</span>
+    <span>Werte</span><span>Hurrelmann</span><span>Leidenschaft</span>
+    <span>Geschichte</span><span>Haltung</span><span>Kultur</span>
+    <span>Bourdieu</span><span>E = mc²</span><span>Globalität</span>
+    <span>PISA</span><span>One World</span><span>Kunst</span>
   </div>
   <div class="quote-grid reveal" id="quoteObstacle">
     <div class="tag">Leitmotiv 2027</div>
@@ -863,24 +863,6 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
       Erläuterung. Entscheidend ist nicht die Frage selbst, sondern was
       hinter ihr steckt.
     </p>
-    <aside class="warum-fragen reveal">
-      <div class="kicker">Hintergrund</div>
-      <h3>Warum wir <em>fragen</em> — und nicht antworten</h3>
-      <p>Gute Fragen bewegen mehr als fertige Antworten. Eine Frage zeigt,
-      wo jemand hinschaut: was er für klärungs­bedürftig hält, was ihn
-      unruhig macht, was er noch nicht weiß. Genau deshalb steht bei der
-      Olympiade nicht die Antwort im Mittelpunkt, sondern die Frage.</p>
-      <p>Wir bitten dich, deine Fragen zu erläutern — nicht, um sie zu
-      rechtfertigen, sondern um sichtbar zu machen, wie sie entstanden sind:
-      aus welchen Erfahrungen, Beobachtungen, Lektüren. Denn eine Frage ist
-      nie neutral. Sie kommt aus einem Leben, aus einer Haltung, aus einem
-      Blick auf die Welt.</p>
-      <ul class="leitfragen">
-        <li>Warum hat die Frage Relevanz — für dich, für andere, für die Gesellschaft?</li>
-        <li>Welchen Einfluss hat sie auf dich und deine Sozialisation?</li>
-        <li>Warum stellst gerade <em>du</em> diese Frage — und nicht die anderen?</li>
-      </ul>
-    </aside>
     <div class="fragen reveal">
       <article class="frage">
         <div class="num">01</div>
@@ -913,6 +895,21 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         <span class="limit">max. 4 000 Zeichen</span>
       </article>
     </div>
+    <aside class="warum-fragen reveal">
+      <div class="kicker">Hintergrund</div>
+      <h3>Warum wir <em>fragen</em></h3>
+      <p>Gute Fragen bewegen mehr als fertige Antworten. Eine Frage zeigt,
+      wo jemand hinschaut: was er für klärungs­bedürftig hält, was ihn
+      unruhig macht, was er noch nicht weiß. Genau deshalb steht bei der
+      Olympiade nicht die Antwort im Mittelpunkt, sondern die Frage.</p>
+      <p>Wir bitten dich, deine Fragen zu erläutern, um sichtbar zu machen,
+      wie sie entstanden sind: aus welchen Erfahrungen, Beobachtungen,
+      Lektüren.</p>
+      <p class="leitfragen">Warum hat die Frage Relevanz, für dich, für
+      andere, für die Gesellschaft? Welchen Einfluss hat sie auf dich und
+      deine Sozialisation? Warum stellst gerade du diese Frage und nicht
+      die anderen?</p>
+    </aside>
   </div>
 </section>
 
