@@ -1213,13 +1213,17 @@ window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
 // Floating physics for quote-tags (Pong-style bouncing chips around the Einstein quote)
+// On mobile (< 700px) switches to collision-free "breathing" mode: each chip
+// oscillates around a fixed anchor via independent sine phases — no more verhaken.
 (function(){
   const wrap = document.getElementById('quoteTags');
   if(!wrap) return;
+  const MOBILE_BP = 700;
   const items = [...wrap.children];
   let state = [];
   let obstacles = [];
   let raf = 0;
+  let isMobile = false;
 
   function getObstacles(){
     const wr = wrap.getBoundingClientRect();
@@ -1318,6 +1322,16 @@ onScroll();
       resolveCollisions();
       resolveObstacle();
     }
+    // capture anchors + per-chip sine params for mobile "breathing" mode
+    state.forEach(s => {
+      s.ax = s.x; s.ay = s.y;
+      s.fx = .0007 + Math.random() * .0006;
+      s.fy = .0007 + Math.random() * .0006;
+      s.px = Math.random() * Math.PI * 2;
+      s.py = Math.random() * Math.PI * 2;
+      s.ampX = 14 + Math.random() * 10;
+      s.ampY = 12 + Math.random() * 9;
+    });
     state.forEach(s => s.el.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`);
   }
 
@@ -1357,6 +1371,16 @@ onScroll();
       raf = requestAnimationFrame(tick);
       return;
     }
+    if(isMobile){
+      // collision-free breathing mode — anchors stay put, only oscillation
+      state.forEach(s => {
+        s.x = s.ax + Math.sin(now * s.fx + s.px) * s.ampX;
+        s.y = s.ay + Math.cos(now * s.fy + s.py) * s.ampY;
+        s.el.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`;
+      });
+      raf = requestAnimationFrame(tick);
+      return;
+    }
     const cw = wrap.clientWidth, ch = wrap.clientHeight;
     state.forEach(s => {
       s.x += s.vx * dt;
@@ -1373,6 +1397,7 @@ onScroll();
   }
 
   function start(){
+    isMobile = window.innerWidth < MOBILE_BP;
     measureAndPlace();
     cancelAnimationFrame(raf);
     lastTime = performance.now();
@@ -1393,12 +1418,16 @@ onScroll();
 })();
 
 // FAQ flying Pong bubbles
+// On mobile (< 700px) switches to collision-free breathing mode — same
+// rationale as quote-tags: tight canvas + many bubbles == verhaken.
 (function(){
   const list = document.getElementById('faqList');
   if(!list) return;
+  const MOBILE_BP = 700;
   const items = [...list.querySelectorAll('details')];
   let state = [];
   let raf = 0;
+  let isMobile = false;
 
   function resolveCollisions(){
     for(let i=0;i<state.length;i++){
@@ -1463,6 +1492,16 @@ onScroll();
       };
     });
     for(let pass=0; pass<8; pass++) resolveCollisions();
+    // capture anchors + per-bubble sine params for mobile breathing
+    state.forEach(s => {
+      s.ax = s.x; s.ay = s.y;
+      s.fx = .0006 + Math.random() * .0005;
+      s.fy = .0006 + Math.random() * .0005;
+      s.px = Math.random() * Math.PI * 2;
+      s.py = Math.random() * Math.PI * 2;
+      s.ampX = 8 + Math.random() * 6;
+      s.ampY = 7 + Math.random() * 5;
+    });
     state.forEach(applyT);
   }
 
@@ -1471,6 +1510,18 @@ onScroll();
     const dt = Math.min(32, now - lastTime) / 16.67;
     lastTime = now;
     if(document.body.dataset.motion === '0'){
+      raf = requestAnimationFrame(tick);
+      return;
+    }
+    if(isMobile){
+      // collision-free breathing — open bubble still centers via applyT
+      state.forEach(s => {
+        if(!s.el.open){
+          s.x = s.ax + Math.sin(now * s.fx + s.px) * s.ampX;
+          s.y = s.ay + Math.cos(now * s.fy + s.py) * s.ampY;
+        }
+        applyT(s);
+      });
       raf = requestAnimationFrame(tick);
       return;
     }
@@ -1490,6 +1541,7 @@ onScroll();
   }
 
   function start(){
+    isMobile = window.innerWidth < MOBILE_BP;
     measureAndPlace();
     cancelAnimationFrame(raf);
     lastTime = performance.now();
