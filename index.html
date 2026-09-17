@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pädagogik-Olympiade 2027 — (Un-)Gleichheit & (Un-)Gerechtigkeit</title>
-<meta name="description" content="Pädagogik-Olympiade 2027 an der Universität Bielefeld: Reiche drei Fragen zum Thema (Un-)Gleichheit und (Un-)Gerechtigkeit ein und diskutiere mit Wissenschaftler:innen.">
+<meta name="description" content="Pädagogik-Olympiade 2027 an der Universität Bielefeld: Reiche bis 30. November 2026 drei Fragen zum Thema (Un-)Gleichheit und (Un-)Gerechtigkeit ein und diskutiere mit Wissenschaftler:innen.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Pädagogik-Olympiade 2027 — (Un-)Gleichheit & (Un-)Gerechtigkeit">
-<meta property="og:description" content="Reiche drei Fragen ein und diskutiere am 19. Februar 2027 an der Universität Bielefeld mit Wissenschaftler:innen.">
+<meta property="og:description" content="Reiche bis 30. November 2026 drei Fragen ein und diskutiere am 19. Februar 2027 an der Universität Bielefeld mit Wissenschaftler:innen.">
 <meta property="og:url" content="https://tobiaskammer.github.io/paedagogik-olympiade-2027/">
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary_large_image">
@@ -198,6 +198,10 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
   letter-spacing:-.005em;color:var(--ink-2)}
 .hero-meta span{display:inline-flex;align-items:baseline}
 .hero-meta .sep{color:var(--terra);font-style:normal;opacity:.7}
+@media (max-width:640px){
+  .hero-meta{flex-direction:column;gap:6px;margin-top:36px;font-size:16px}
+  .hero-meta .sep{display:none}
+}
 .scroll-cue{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);
   font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ink-2);opacity:.7;display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -227,18 +231,24 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
 .neu{background:transparent;
   padding-top:calc(var(--section-pad) * var(--density) * .5)}
 .neu .section-head{text-align:center}
-.neu-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
-  gap:14px 26px;margin-top:80px;
+.neu-meta{display:flex;flex-direction:column;align-items:center;
+  gap:18px;margin-top:80px;
   font-family:var(--serif);font-size:32px;font-weight:400;color:var(--ink);
   font-style:italic}
+.neu-meta .row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:14px 26px}
+.neu-meta .hl.deadline{background:rgba(196,106,74,.2);color:var(--terra-deep);
+  box-shadow:0 6px 18px -8px rgba(156,76,51,.35)}
 .neu-meta .hl{background:rgba(74,107,140,.22);color:#2c4a6f;
   padding:10px 22px;border-radius:10px;font-style:italic;
   letter-spacing:.08em;text-transform:uppercase;
   font-size:clamp(16px,2vw,22px);font-weight:600;
   box-shadow:0 6px 18px -8px rgba(44,74,111,.35)}
 .neu-meta .sep{color:var(--terra);opacity:.7;font-style:normal;font-size:1.2em}
-@media (max-width:640px){.neu-meta{gap:10px 14px;margin-top:56px}
-  .neu-meta .hl{font-size:14px;padding:8px 16px}}
+@media (max-width:640px){.neu-meta{gap:12px;margin-top:56px}
+  .neu-meta .row{flex-direction:column;gap:10px}
+  .neu-meta .sep{display:none}
+  .neu-meta .hl{font-size:14px;padding:8px 16px;text-align:center}}
 .section-head{margin-bottom:var(--section-head-gap)}
 .section-head h2{font-family:var(--serif);font-weight:300;
   font-size:clamp(30px,3.6vw,50px);line-height:1.02;letter-spacing:-.018em}
@@ -565,6 +575,11 @@ section{padding:calc(var(--section-pad) * var(--density)) 0;position:relative}
 .cta-box .mail{font-family:var(--serif);font-size:18px;font-weight:400;
   color:var(--ink);text-decoration:none;letter-spacing:-.005em}
 .cta-box .mail:hover{color:var(--terra-deep)}
+.cta-box .deadline{font-family:var(--sans);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;font-weight:600;color:var(--terra-deep);
+  display:inline-flex;align-items:center;gap:8px;margin-top:-4px}
+.cta-box .deadline::before{content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--terra);flex-shrink:0}
 .cta-btn{display:inline-flex;align-items:center;gap:10px;
   background:var(--terra);color:var(--cream);padding:14px 22px;
   border-radius:999px;text-decoration:none;font-family:var(--sans);
@@ -741,6 +756,11 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
       reflektierteren, mutigeren <em>Fragen</em>. Komm an die Universität Bielefeld
       und diskutiere mit Wissenschaftler:innen.
     </p>
+    <div class="hero-meta">
+      <span>Einsendeschluss 30. November 2026</span>
+      <span class="sep">·</span>
+      <span>Olympiade 19. Februar 2027</span>
+    </div>
   </div>
 </section>
 
@@ -849,9 +869,14 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
       </div>
     </div>
     <div class="neu-meta reveal">
-      <span class="hl">19. Februar 2027</span>
-      <span class="sep">·</span>
-      <span class="hl">Universität Bielefeld</span>
+      <div class="row">
+        <span class="hl deadline">Einsendeschluss 30. November 2026</span>
+      </div>
+      <div class="row">
+        <span class="hl">19. Februar 2027</span>
+        <span class="sep">·</span>
+        <span class="hl">Universität Bielefeld</span>
+      </div>
     </div>
   </div>
 </section>
@@ -947,14 +972,14 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
         </div>
       </div>
       <div class="tl-row">
-        <div class="when">Herbst 2026</div>
+        <div class="when">30.11.2026</div>
         <div class="what">
           <h4>Einsendeschluss</h4>
-          <p>Sende uns deine drei Fragen plus drei Erläuterungen. </p>
+          <p>Deine drei Fragen plus drei Erläuterungen müssen bis zum 30. November 2026 bei uns sein.</p>
         </div>
       </div>
       <div class="tl-row">
-        <div class="when">Winter 2026 / 27</div>
+        <div class="when">Dezember – Januar</div>
         <div class="what">
           <h4>Auswahl durch die Jury</h4>
           <p>Eine Jury aus Wissenschaftler:innen, Lehrkräften und Schüler:innen wählt zehn Teilnehmende aus.</p>
@@ -1051,6 +1076,7 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
   <div class="section-head reveal">    <h2>So <em>reichst du ein</em>.</h2>
   </div>
   <div class="einreich-card reveal">
+    <p class="lead">Einsendeschluss ist der <em>30. November 2026</em>.</p>
     <div class="einreich-grid">
       <div>
         <h4>Was du einreichst</h4>
@@ -1066,6 +1092,7 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
       <div class="cta-box">
         <span class="mail-label">Einreichung &amp; Rückfragen</span>
         <a href="mailto:ullrich.bauer@uni-bielefeld.de?subject=Bewerbung%20P%C3%A4dagogik-Olympiade%202027" class="mail">ullrich.bauer@uni-bielefeld.de</a>
+        <span class="deadline">Bis 30. November 2026</span>
         <a href="mailto:ullrich.bauer@uni-bielefeld.de?subject=Bewerbung%20P%C3%A4dagogik-Olympiade%202027" class="cta-btn">Bewerbung schicken</a>
       </div>
     </div>
@@ -1087,6 +1114,11 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
   <div class="section-head reveal">    <h2>Noch <em>Fragen</em>?</h2>
   </div>
   <div class="faq-list reveal" id="faqList">
+    <details>
+      <summary>Bis wann muss ich einreichen?</summary>
+      <p>Bis zum 30. November 2026, per E-Mail. Später eingehende Bewerbungen
+      können wir leider nicht berücksichtigen.</p>
+    </details>
     <details>
       <summary>Kann ich als Team einreichen?</summary>
       <p>Nein — 2027 sind nur Einzelbewerbungen zugelassen. Es geht um deine
@@ -1140,7 +1172,7 @@ footer{background:var(--ink);color:rgba(248,242,228,.7);padding:80px 0 40px;
     <div class="foot-grid">
       <div>
         <div class="mark">Pädagogik-<br>Olympiade ’27<span>Universität Bielefeld</span></div>
-        <div class="mark-date">19. Februar 2027</div>
+        <div class="mark-date">Einsendeschluss 30. November 2026<br>Olympiade 19. Februar 2027</div>
       </div>
       <div class="foot-col">
         <h5>Kontakt</h5>
